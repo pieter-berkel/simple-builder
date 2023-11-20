@@ -1,6 +1,6 @@
 {
   "name": "@simple-builder/server",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": false,
   "description": "Server package for the simple builder package.",
   "exports": {
