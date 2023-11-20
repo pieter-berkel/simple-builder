@@ -1,0 +1,30 @@
+{
+  "name": "simple-builder",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": "^8.0.0"
+  },
+  "packageManager": "pnpm@8.10.5",
+  "scripts": {
+    "build": "turbo run build --filter=@simple-builder/*",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "release": "changeset publish",
+    "clean": "turbo run clean && git clean -xdf node_modules"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/node": "^20.9.2",
+    "@types/prettier": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-turbo": "^1.10.16",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.7",
+    "turbo": "^1.10.16"
+  }
+}

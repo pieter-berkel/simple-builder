@@ -1,0 +1,27 @@
+{
+  "name": "@simple-builder/server",
+  "version": "0.0.0",
+  "private": false,
+  "description": "Server package for the simple builder package.",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "npm run build -- --watch",
+    "lint": "eslint --ext \".js,.jsx,.ts,.tsx\" --ignore-path ../../.gitignore src",
+    "clean": "git clean -xdf .turbo node_modules dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "5.2.2",
+    "tsup": "^7.3.0"
+  }
+}
