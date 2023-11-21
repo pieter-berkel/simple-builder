@@ -1,5 +1,5 @@
 {
-  "name": "next",
+  "name": "next-example",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,11 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --ext \".js,.jsx,.ts,.tsx\" --report-unused-disable-directives .",
-    "lint-fix": "pnpm lint --fix"
+    "lint-fix": "pnpm lint --fix",
+    "clean": "git clean -xdf .turbo node_modules .next"
   },
   "dependencies": {
-    "@simple-builder/react": "0.0.1",
-    "@simple-builder/server": "0.0.1",
+    "@simple-builder/react": "workspace:*",
+    "@simple-builder/server": "workspace:*",
     "next": "0.1.0",
     "react": "^18",
     "react-dom": "^18"
