@@ -13,7 +13,7 @@
   "dependencies": {
     "@simple-builder/react": "workspace:*",
     "@simple-builder/server": "workspace:*",
-    "next": "0.1.0",
+    "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18"
   },
