@@ -21,7 +21,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "typescript": "5.2.2",
-    "tsup": "^7.3.0"
+    "tsup": "^7.3.0",
+    "typescript": "5.2.2"
   }
 }

@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 /** @type {import("eslint").Linter.Config} */
 const config = {
   root: true,
@@ -14,7 +12,14 @@ const config = {
     ecmaVersion: 2022,
     sourceType: "module",
     tsConfigRootDir: __dirname,
-    project: ["./tsconfig.json", "./packages/*/tsconfig.json"],
+    project: [
+      "./tsconfig.json",
+      "./packages/*/tsconfig.json",
+      "./examples/*/tsconfig.json",
+    ],
+  },
+  rules: {
+    "no-undef": "off",
   },
 };
 
