@@ -3,10 +3,39 @@
   "version": "0.0.2",
   "private": false,
   "description": "Server package for the simple builder package.",
+  "repository": "https://github.com/pieter-berkel/simple-builder.git",
+  "author": "Pieter Berkel <perkamentus@codetovenaars.nl>",
+  "license": "MIT",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./core": {
+      "import": "./dist/core/index.mjs",
+      "require": "./dist/core/index.js",
+      "default": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./adapters": {
+      "import": "./dist/adapters/index.mjs",
+      "require": "./dist/adapters/index.js",
+      "default": "./dist/adapters/index.js",
+      "types": "./dist/adapters/index.d.ts"
+    },
+    "./adapters/next/app": {
+      "import": "./dist/adapters/next/app/index.mjs",
+      "require": "./dist/adapters/next/app/index.js",
+      "default": "./dist/adapters/next/app/index.js",
+      "types": "./dist/adapters/next/app/index.d.ts"
+    },
+    "./providers": {
+      "import": "./dist/providers/index.mjs",
+      "require": "./dist/providers/index.js",
+      "default": "./dist/providers/index.js",
+      "types": "./dist/providers/index.d.ts"
     }
   },
   "types": "./dist/index.d.ts",
@@ -19,9 +48,9 @@
     "lint": "eslint --ext \".js,.jsx,.ts,.tsx\" --ignore-path ../../.gitignore src",
     "clean": "git clean -xdf .turbo node_modules dist"
   },
-  "dependencies": {},
   "devDependencies": {
-    "tsup": "^7.3.0",
-    "typescript": "5.2.2"
+    "next": "14.0.4",
+    "tsup": "^8.0.1",
+    "typescript": "5.3.3"
   }
 }

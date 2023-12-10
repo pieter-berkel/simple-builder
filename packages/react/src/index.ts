@@ -1,3 +1,5 @@
-export const add = (a: number, b: number) => {
-  return a + b;
-};
+import "~/global.css";
+
+export { builder } from "~/lib/builder";
+export { Builder as BuilderComponent } from "~/components/builder";
+export { BuildContainer } from "~/components/build-container";
