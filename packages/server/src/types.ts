@@ -9,8 +9,6 @@ export type BuilderContent = Block[];
 export type Block = {
   id: string;
   parent?: string;
-  name?: string;
-  position: number;
   component: string;
   styles?: Record<string, string>;
   props?: Record<string, unknown>;

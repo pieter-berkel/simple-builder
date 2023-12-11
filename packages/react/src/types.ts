@@ -30,7 +30,7 @@ export type Component = {
   component: (props?: any) => JSX.Element;
   name: string;
   friendlyName?: string;
-  image?: string;
+  icon?: any;
   description?: string;
   inputs?: ComponentInput<any>[];
   defaults?: Record<string, unknown>;

@@ -8,7 +8,6 @@ builder.register(
   {
     name: "hero",
     friendlyName: "Hero",
-    image: "/components/hero.png",
     inputs: [
       {
         type: "string",

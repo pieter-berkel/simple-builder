@@ -65,3 +65,13 @@
     --sb-ring: 0 0% 83.1%;
   }
 }
+
+.add-content-divider-button:hover,
+.add-content-divider-button:has(> [data-state="open"]),
+.add-content-divider-button:has(+ .sb-container-item:hover),
+.add-content-divider-button
+  + .sb-container-item:hover
+  + .add-content-divider-button,
+.sb-container-item:hover > .sb-item-toolbar {
+  @apply opacity-100;
+}
