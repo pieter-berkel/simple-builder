@@ -18,7 +18,7 @@ export const provider: Provider = {
 
     return await db.query.pages.findFirst({
       where: (fields, { eq }) => eq(fields[identifier], value),
-      columns: { id: true, name: true, slug: true, blocks: true },
+      columns: { id: true, name: true, slug: true, content: true },
     });
   },
 
@@ -29,7 +29,7 @@ export const provider: Provider = {
     await db
       .update(s.pages)
       .set({
-        blocks: params.blocks,
+        content: params.content,
         updatedAt: new Date(),
       })
       .where(eq(s.pages[identifier], value));

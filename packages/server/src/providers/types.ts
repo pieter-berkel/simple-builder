@@ -11,7 +11,7 @@ export type GetPageRes = Page | undefined;
 export type UpdatePageParams = ({ id: string } | { slug: string }) & {
   name?: string;
   slug?: string;
-  blocks?: Block[];
+  content?: Block[];
 };
 
 export type GetFileRes = string;

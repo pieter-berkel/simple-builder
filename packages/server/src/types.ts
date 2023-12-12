@@ -18,5 +18,5 @@ export type Page = {
   id: string | number;
   name: string;
   slug: string;
-  blocks: Block[];
+  content: Block[];
 };

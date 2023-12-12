@@ -6,6 +6,7 @@ import { useBuilder } from "~/components/context/builder-context";
 import { Button } from "~/components/ui/button";
 import {
   Popover,
+  PopoverClose,
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
@@ -81,15 +82,16 @@ const AddContentDividerButton = (props: AddContentDividerButtonProps) => {
               const Icon = component.icon ?? ImageIcon;
 
               return (
-                <Button
-                  key={component.name}
-                  variant="ghost"
-                  className="justify-start"
-                  onClick={() => addContent(component.name, parent, position)}
-                >
-                  <Icon className="mr-2 h-4 w-4" />
-                  {component.friendlyName ?? component.name}
-                </Button>
+                <PopoverClose key={component.name} asChild>
+                  <Button
+                    variant="ghost"
+                    className="justify-start"
+                    onClick={() => addContent(component.name, parent, position)}
+                  >
+                    <Icon className="mr-2 h-4 w-4" />
+                    {component.friendlyName ?? component.name}
+                  </Button>
+                </PopoverClose>
               );
             })}
           </div>

@@ -1,16 +1,7 @@
 import * as React from "react";
-import {
-  ArrowDown,
-  ArrowUp,
-  CopyIcon,
-  Edit2Icon,
-  HeartIcon,
-  Trash2Icon,
-} from "lucide-react";
+import { ArrowDown, ArrowUp, Edit2Icon, Trash2Icon } from "lucide-react";
 
 import { useBuilder } from "~/components/context/builder-context";
-import { Button, buttonVariants } from "~/components/ui/button";
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,7 +10,11 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTrigger,
-} from "./ui/alert-dialog";
+} from "~/components/ui/alert-dialog";
+import { Button, buttonVariants } from "~/components/ui/button";
+
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 type ContainerItemToolbarProps = {
   contentId: string;
@@ -31,18 +26,9 @@ export const ContainerItemToolbar = (props: ContainerItemToolbarProps) => {
   const { canBringDirection, bringDirection } = useBuilder();
 
   return (
-    <div className="absolute z-20 w-48 top-1 right-1 rounded-md shadow flex flex-col gap-1 p-1 bg-sb-card text-sb-card-sb-foreground sb-item-toolbar opacity-0 transition-opacity">
-      <Button variant="outline" className="w-full justify-start">
-        <Edit2Icon className="h-5 w-5 mr-2" />
-        Aanpassen
-      </Button>
+    <div className="absolute z-20 top-1 right-1 rounded-md shadow flex flex-col gap-1 p-1 bg-sb-card text-sb-card-sb-foreground sb-item-toolbar opacity-0 transition-opacity">
       <div className="h-10 p-1 border border-sb-input bg-sb-background rounded-md text-sm font-medium flex gap-1 items-center justify-start">
-        <Button variant="ghost" className="w-8 h-8 p-0" disabled>
-          <CopyIcon className="h-5 w-5" />
-        </Button>
-        <Button variant="ghost" className="w-8 h-8 p-0" disabled>
-          <HeartIcon className="h-5 w-5" />
-        </Button>
+        <EditButton contentId={contentId} />
         <Button
           variant="ghost"
           className="w-8 h-8 p-0"
@@ -59,9 +45,22 @@ export const ContainerItemToolbar = (props: ContainerItemToolbarProps) => {
         >
           <ArrowDown className="h-5 w-5" />
         </Button>
+        <DeleteButton contentId={contentId} />
       </div>
-      <DeleteButton contentId={contentId} />
     </div>
+  );
+};
+
+const EditButton = ({ contentId }: { contentId: string }) => {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="ghost" className="w-8 h-8 p-0">
+          <Edit2Icon className="h-5 w-5" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent>Hi</SheetContent>
+    </Sheet>
   );
 };
 
@@ -71,12 +70,8 @@ const DeleteButton = ({ contentId }: { contentId: string }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="w-full justify-start text-sb-destructive"
-        >
-          <Trash2Icon className="h-5 w-5 mr-2" />
-          Verwijderen
+        <Button variant="ghost" className="w-8 h-8 p-0 text-sb-destructive">
+          <Trash2Icon className="h-5 w-5" />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

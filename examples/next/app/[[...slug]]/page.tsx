@@ -2,7 +2,7 @@ import * as React from "react";
 import { notFound } from "next/navigation";
 
 import { db } from "~/server/db";
-import { RenderBuilderContent } from "./builder";
+import { StaticContentRenderer } from "./static-content-renderer";
 
 export default async function Home({ params }: { params: { slug: string[] } }) {
   const slug = params.slug ? `/${params.slug.join("/")}` : "/";
@@ -15,5 +15,5 @@ export default async function Home({ params }: { params: { slug: string[] } }) {
     return notFound();
   }
 
-  return <RenderBuilderContent content={page.blocks} />;
+  return <StaticContentRenderer content={page.content} />;
 }

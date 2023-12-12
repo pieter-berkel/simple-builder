@@ -6,6 +6,7 @@ import type { BuilderMode } from "~/types";
 
 type BuilderContextType = {
   mode: BuilderMode;
+  url: string;
 
   content: BuilderContent;
   setContent: React.Dispatch<React.SetStateAction<BuilderContent>>;
@@ -13,6 +14,7 @@ type BuilderContextType = {
   canBringDirection: (id: string, direction: "up" | "down") => boolean;
   bringDirection: (id: string, direction: "up" | "down") => void;
   deleteContent: (id: string) => void;
+  save: () => void;
 };
 
 export const BuilderContext = React.createContext<BuilderContextType | null>(
@@ -22,10 +24,14 @@ export const BuilderContext = React.createContext<BuilderContextType | null>(
 type BuilderProviderProps = {
   children: React.ReactNode;
   mode?: BuilderMode;
+  url?: string;
   content?: BuilderContent;
 };
 
 export const BuilderProvider = (props: BuilderProviderProps) => {
+  const mode = props.mode ?? "static";
+  const url = props.url ?? "/api/simple-builder";
+
   const [content, setContent] = React.useState<BuilderContent>(
     props.content ?? [],
   );
@@ -121,16 +127,30 @@ export const BuilderProvider = (props: BuilderProviderProps) => {
     [setContent],
   );
 
+  const save = React.useCallback(async () => {
+    const slug = window.location.pathname;
+
+    await fetch(`${url}/page/update`, {
+      method: "POST",
+      body: JSON.stringify({
+        slug,
+        content,
+      }),
+    });
+  }, [content]);
+
   return (
     <BuilderContext.Provider
       value={{
-        mode: props.mode ?? "static",
+        mode,
+        url,
         content,
         setContent,
         addContent,
         canBringDirection,
         bringDirection,
         deleteContent,
+        save,
       }}
     >
       {props.children}
