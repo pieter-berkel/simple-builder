@@ -1,4 +1,4 @@
-import type { Block, MaybePromise, Page } from "~/types";
+import type { ContentItem, MaybePromise, Page } from "~/types";
 
 export type GetPagesRes = {
   slug: string;
@@ -11,7 +11,7 @@ export type GetPageRes = Page | undefined;
 export type UpdatePageParams = ({ id: string } | { slug: string }) & {
   name?: string;
   slug?: string;
-  content?: Block[];
+  content?: ContentItem[];
 };
 
 export type GetFileRes = string;

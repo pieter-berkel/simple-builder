@@ -4,8 +4,6 @@ export type Simplify<TType> = TType extends any[] | Date
 
 export type MaybePromise<T> = Promise<T> | T;
 
-export type BuilderMode = "static" | "edit";
-
 export type InputType =
   | "string"
   | "number"

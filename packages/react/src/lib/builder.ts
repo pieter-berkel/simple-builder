@@ -1,5 +1,5 @@
 import { createElement } from "react";
-import { Block } from "@simple-builder/server";
+import { ContentItem } from "@simple-builder/server";
 
 import type { Component } from "~/types";
 
@@ -27,7 +27,7 @@ export const builder = (() => {
       return components.find((c) => c.name === name);
     },
 
-    bindComponent: (block: Block) => {
+    bindComponent: ({ content, ...block }: ContentItem, edit?: boolean) => {
       const component = components.find(({ name }) => name === block.component);
 
       if (!component) {
@@ -38,9 +38,8 @@ export const builder = (() => {
 
       const Element = createElement(component.component, {
         key: block.id,
-        builder: { parent: block.id },
+        builder: { id: block.id, content, edit },
         ...block.props,
-        style: block.styles,
       });
 
       return Element;

@@ -73,5 +73,19 @@
   + .sb-container-item:hover
   + .add-content-divider-button,
 .sb-container-item:hover > .sb-item-toolbar {
-  @apply opacity-100;
+  opacity: 1;
+}
+
+.add-content-divider-button:has(+ .sb-container-item .sb-container-item:hover) {
+  opacity: 0;
+}
+
+.add-content-divider-button
+  + .sb-container-item:has(.sb-container-item:hover)
+  + .add-content-divider-button {
+  opacity: 0;
+}
+
+.sb-container-item:has(.sb-container-item:hover) > .sb-item-toolbar {
+  opacity: 0;
 }

@@ -30,3 +30,13 @@ builder.register(
     friendlyName: "Sectie",
   },
 );
+
+builder.register(
+  dynamic(() =>
+    import("../../components/2-columns").then((mod) => mod.TwoColumns),
+  ),
+  {
+    name: "2-columns",
+    friendlyName: "2 Kolommen",
+  },
+);

@@ -13,17 +13,18 @@ import {
 } from "~/components/ui/alert-dialog";
 import { Button, buttonVariants } from "~/components/ui/button";
 
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 type ContainerItemToolbarProps = {
   contentId: string;
+  canBringUp?: boolean;
+  canBringDown?: boolean;
 };
 
 export const ContainerItemToolbar = (props: ContainerItemToolbarProps) => {
-  const { contentId } = props;
+  const { contentId, canBringUp = false, canBringDown = false } = props;
 
-  const { canBringDirection, bringDirection } = useBuilder();
+  const { bringUp, bringDown } = useBuilder();
 
   return (
     <div className="absolute z-20 top-1 right-1 rounded-md shadow flex flex-col gap-1 p-1 bg-sb-card text-sb-card-sb-foreground sb-item-toolbar opacity-0 transition-opacity">
@@ -32,16 +33,16 @@ export const ContainerItemToolbar = (props: ContainerItemToolbarProps) => {
         <Button
           variant="ghost"
           className="w-8 h-8 p-0"
-          onClick={() => bringDirection(contentId, "up")}
-          disabled={!canBringDirection(contentId, "up")}
+          onClick={() => bringUp(contentId)}
+          disabled={!canBringUp}
         >
           <ArrowUp className="h-5 w-5" />
         </Button>
         <Button
           variant="ghost"
           className="w-8 h-8 p-0"
-          onClick={() => bringDirection(contentId, "down")}
-          disabled={!canBringDirection(contentId, "down")}
+          onClick={() => bringDown(contentId)}
+          disabled={!canBringDown}
         >
           <ArrowDown className="h-5 w-5" />
         </Button>

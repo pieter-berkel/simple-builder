@@ -4,13 +4,13 @@ export type Simplify<TType> = TType extends any[] | Date
 
 export type MaybePromise<T> = Promise<T> | T;
 
-export type BuilderContent = Block[];
+export type BuilderContent = ContentItem[];
 
-export type Block = {
+export type ContentItem = {
   id: string;
   parent?: string;
+  content?: Record<string, ContentItem[]>;
   component: string;
-  styles?: Record<string, string>;
   props?: Record<string, unknown>;
 };
 
@@ -18,5 +18,5 @@ export type Page = {
   id: string | number;
   name: string;
   slug: string;
-  content: Block[];
+  content: ContentItem[];
 };
