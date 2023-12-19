@@ -17,29 +17,29 @@ const config: Config = {
           DEFAULT: "hsl( var(--sb-primary))",
           "sb-foreground": "hsl(var(--sb-primary-foreground))",
         },
-        "sb-secondar": {
+        "sb-secondary": {
           DEFAULT: "hsl(var(--sb-secondary))",
-          "sb-foreground": "hsl(var(--sb-secondary-foreground))",
+          sforeground: "hsl(var(--sb-secondary-foreground))",
         },
         "sb-destructive": {
           DEFAULT: "hsl(var(--sb-destructive))",
-          "sb-foreground": "hsl(var(--sb-destructive-foreground))",
+          foreground: "hsl(var(--sb-destructive-foreground))",
         },
         "sb-muted": {
           DEFAULT: "hsl(var(--sb-muted))",
-          "sb-foreground": "hsl(var(--sb-muted-foreground))",
+          foreground: "hsl(var(--sb-muted-foreground))",
         },
         "sb-accent": {
           DEFAULT: "hsl(var(--sb-accent))",
-          "sb-foreground": "hsl(var(--sb-accent-foreground))",
+          foreground: "hsl(var(--sb-accent-foreground))",
         },
         "sb-popover": {
           DEFAULT: "hsl(var(--sb-popover))",
-          "sb-foreground": "hsl(var(--sb-popover-foreground))",
+          foreground: "hsl(var(--sb-popover-foreground))",
         },
         "sb-card": {
           DEFAULT: "hsl(var(--sb-card))",
-          "sb-foreground": "hsl(var(--sb-card-foreground))",
+          foreground: "hsl(var(--sb-card-foreground))",
         },
       },
       borderRadius: {

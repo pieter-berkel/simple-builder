@@ -16,9 +16,7 @@ export const Hero = (props: HeroProps) => {
           className="absolute inset-0 object-cover -z-[1]"
         />
       )}
-      <h1 className="text-3xl font-bold text-center text-white">
-        {props.title}
-      </h1>
+      <h1 className="text-3xl font-bold text-center">{props.title}</h1>
     </div>
   );
 };

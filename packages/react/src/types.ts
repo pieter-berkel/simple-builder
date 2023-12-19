@@ -1,3 +1,5 @@
+import { BuilderContent, ContentItem } from "@simple-builder/server";
+
 export type Simplify<TType> = TType extends any[] | Date
   ? TType
   : { [K in keyof TType]: TType[K] };
@@ -32,5 +34,13 @@ export type Component = {
   description?: string;
   inputs?: ComponentInput<any>[];
   defaults?: Record<string, unknown>;
-  defaultStyles?: Record<string, string>;
+  defaultStyles?: ContentItem["styles"];
+};
+
+export type BuildContainerProps = {
+  builder: {
+    id?: string;
+    content: BuilderContent;
+    edit: boolean;
+  };
 };

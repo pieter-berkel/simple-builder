@@ -9,6 +9,10 @@ type BuilderContextType = {
 
   content: BuilderContent;
   setContent: React.Dispatch<React.SetStateAction<BuilderContent>>;
+
+  getItem: (id: string) => BuilderContent[number] | undefined;
+  patchItem: (id: string, patch: Partial<BuilderContent[number]>) => void;
+
   addContent: (
     name: string,
     container: string,
@@ -38,6 +42,29 @@ export const BuilderProvider = (props: BuilderProviderProps) => {
     props.content ?? [],
   );
 
+  const getItem = React.useCallback(
+    (id: string) => findRecursive(content, (item) => item.id === id),
+    [content],
+  );
+
+  const patchItem = React.useCallback(
+    (id: string, patch: Partial<BuilderContent[number]>) => {
+      setContent((content) =>
+        mapRecursive(content, (item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              ...patch,
+            };
+          }
+
+          return item;
+        }),
+      );
+    },
+    [setContent, mapRecursive],
+  );
+
   const addContent = React.useCallback(
     (name: string, container: string, parent?: string, index: number = 0) => {
       const component = builder.getComponent(name);
@@ -58,6 +85,9 @@ export const BuilderProvider = (props: BuilderProviderProps) => {
             }),
             {},
           ),
+        }),
+        ...(component.defaultStyles && {
+          styles: component.defaultStyles,
         }),
       };
 
@@ -147,6 +177,8 @@ export const BuilderProvider = (props: BuilderProviderProps) => {
         url,
         content,
         setContent,
+        getItem,
+        patchItem,
         addContent,
         bringUp,
         bringDown,
@@ -207,4 +239,26 @@ const mapRecursive = <T extends any[]>(
       ),
     }),
   })) as T;
+};
+
+const findRecursive = <T extends any[]>(
+  items: T,
+  predicate: (item: T[number]) => boolean,
+  key: string = "content",
+): T[number] | undefined => {
+  for (const item of items) {
+    if (predicate(item)) {
+      return item;
+    }
+
+    if (item[key]) {
+      Object.keys(item[key] ?? {}).map((x) => {
+        const found = findRecursive(item[key][x] as T, predicate, key);
+
+        if (found) {
+          return found;
+        }
+      });
+    }
+  }
 };

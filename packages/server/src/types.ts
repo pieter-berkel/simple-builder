@@ -12,6 +12,13 @@ export type ContentItem = {
   content?: Record<string, ContentItem[]>;
   component: string;
   props?: Record<string, unknown>;
+  styles?: {
+    color?: string;
+    background?: string;
+    container?: boolean;
+    padding?: string;
+    margin?: string;
+  };
 };
 
 export type Page = {

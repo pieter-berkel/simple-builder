@@ -5,6 +5,7 @@ import { ImageIcon, PlusIcon } from "lucide-react";
 import { builder } from "~/lib/builder";
 import { ContainerItemToolbar } from "./container-item-toolbar";
 import { useBuilder } from "./context/builder-context";
+import { DesignWrapper } from "./design-wrapper";
 import { Button } from "./ui/button";
 import {
   Popover,
@@ -45,7 +46,9 @@ export const BuildContainerInner = (props: BuildContainerProps) => {
       {items.map((item, i) => (
         <React.Fragment key={item.id}>
           <div className="relative sb-container-item">
-            {builder.bindComponent(item, true)}
+            <DesignWrapper styles={item.styles}>
+              {builder.bindComponent(item, true)}
+            </DesignWrapper>
             <ContainerItemToolbar
               contentId={item.id}
               canBringUp={i > 0}

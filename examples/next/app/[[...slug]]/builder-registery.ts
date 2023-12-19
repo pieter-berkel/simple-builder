@@ -20,23 +20,26 @@ builder.register(
         defaultValue: "/components/hero-background.jpeg",
       },
     ],
+    defaultStyles: {
+      container: false,
+      color: "#ffffff",
+      background: "#000000",
+    },
   },
 );
 
 builder.register(
-  dynamic(() => import("../../components/section").then((mod) => mod.Section)),
+  dynamic(() => import("../../components/columns").then((mod) => mod.Columns)),
   {
-    name: "section",
-    friendlyName: "Sectie",
-  },
-);
-
-builder.register(
-  dynamic(() =>
-    import("../../components/2-columns").then((mod) => mod.TwoColumns),
-  ),
-  {
-    name: "2-columns",
-    friendlyName: "2 Kolommen",
+    name: "columns",
+    friendlyName: "Kolommen",
+    inputs: [
+      {
+        type: "number",
+        name: "columns",
+        friendlyName: "Aantal kolommen",
+        defaultValue: 2,
+      },
+    ],
   },
 );

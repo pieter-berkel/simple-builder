@@ -13,7 +13,7 @@
     --sb-popover: 0 0% 100%;
     --sb-popover-foreground: 0 0% 3.9%;
 
-    --sb-primary: 195 100% 44%;
+    --sb-primary: 212 100% 50.4%;
     --sb-primary-foreground: 0 0% 98%;
 
     --sb-secondary: 158 24% 93%;
@@ -74,6 +74,10 @@
   + .add-content-divider-button,
 .sb-container-item:hover > .sb-item-toolbar {
   opacity: 1;
+}
+
+.sb-item-toolbar:has([data-state="open"]) {
+  opacity: 1 !important;
 }
 
 .add-content-divider-button:has(+ .sb-container-item .sb-container-item:hover) {
