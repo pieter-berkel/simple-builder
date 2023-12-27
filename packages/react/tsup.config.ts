@@ -8,7 +8,7 @@ const cfg: Options = {
   dts: true,
   format: ["cjs", "esm"],
   minify: false,
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom", "next/image"],
 };
 
 const config = defineConfig([

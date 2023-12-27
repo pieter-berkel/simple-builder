@@ -13,12 +13,6 @@ builder.register(
         friendlyName: "Titel",
         defaultValue: "Hello World",
       },
-      {
-        type: "file",
-        name: "background",
-        friendlyName: "Achtergrond",
-        defaultValue: "/components/hero-background.jpeg",
-      },
     ],
     defaultStyles: {
       container: false,

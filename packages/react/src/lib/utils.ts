@@ -15,24 +15,23 @@ export const insertAt = <T extends any[]>(
     : [item];
 };
 
-// create a function called parsePadding that accepts a padding string for example:
-// "24px 16px 8px 4px" or "24px 16px" or "24px" or "24px 16px 8px" or "24px 16px 8px 16px"
-// and returns an object with the following properties:
-// top: "24", right: "16", bottom: "8", left: "4"
-
 export const spacing = {
   parse: (input: string) => {
     const matches = input.match(/(\d+)/gm);
 
-    const [top = 0, right, bottom, left] =
+    const [top = 0, right = 0, bottom, left] =
       matches?.map((match) => +match) || [];
 
-    return {
-      top,
-      right: right || top,
-      bottom: bottom || top,
-      left: left || right || top,
-    };
+    switch (matches?.length) {
+      case 1:
+        return { top, right: top, bottom: top, left: top };
+      case 2:
+        return { top, bottom: top, left: right, right };
+      case 3:
+        return { top, right, left: right, bottom };
+      default:
+        return { top, right, bottom, left };
+    }
   },
   isIndipendent: (input: string) => {
     const { top, right, bottom, left } = spacing.parse(input);

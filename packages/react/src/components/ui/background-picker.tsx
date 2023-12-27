@@ -10,6 +10,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 import { cn } from "~/lib/utils";
+import { MediaInput } from "./media-input";
 
 type BackgroundPickerProps = {
   background: string;
@@ -23,7 +24,18 @@ type BackgroundPickerProps = {
 export const BackgroundPicker = (props: BackgroundPickerProps) => {
   const { background, onBackgroundChange, className } = props;
 
-  const solids = props.solids ?? ["#000000", "#ffffff"];
+  const solids = props.solids ?? [
+    "#000000",
+    "#ffffff",
+    "#0f172a",
+    "#F1F5F9",
+    "#64748B",
+    "#E6007E",
+    "#F8FAFC",
+    "#009DD1",
+    "#F1F5F9",
+    "#FF0000",
+  ];
 
   const gradients = props.gradients ?? [
     "linear-gradient(to top left,#accbee,#e7f0fd)",
@@ -107,18 +119,34 @@ export const BackgroundPicker = (props: BackgroundPickerProps) => {
               />
             ))}
           </TabsContent>
-          <TabsContent
-            value="image"
-            className="data-[state=active]:grid grid-cols-2 gap-1 p-4"
-          >
-            {images.map((s) => (
-              <div
-                key={s}
-                style={{ backgroundImage: s }}
-                className="rounded-md bg-cover bg-center h-12 w-full cursor-pointer border active:scale-105"
-                onClick={() => onBackgroundChange(s)}
+          <TabsContent value="image">
+            <div className="p-4 border-b">
+              <MediaInput
+                className="grid grid-cols-2 gap-1"
+                itemClassName="aspect-video h-auto w-full"
+                multiple={false}
+                onFilesChange={(files) => {
+                  if (!files.length) return;
+                  onBackgroundChange(`url(${files[0]})`);
+                }}
+                onError={(e) =>
+                  console.error(
+                    "[media-input]: Title: " + e?.title,
+                    "media-input: Error: " + e?.description,
+                  )
+                }
               />
-            ))}
+            </div>
+            <div className="grid grid-cols-2 gap-1 p-4">
+              {images.map((s) => (
+                <div
+                  key={s}
+                  style={{ backgroundImage: s }}
+                  className="rounded-md bg-cover bg-center aspect-video w-full cursor-pointer border active:scale-105"
+                  onClick={() => onBackgroundChange(s)}
+                />
+              ))}
+            </div>
           </TabsContent>
         </Tabs>
       </PopoverContent>

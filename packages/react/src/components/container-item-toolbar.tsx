@@ -101,6 +101,7 @@ const EditButton = ({ id }: { id: string }) => {
         sideOffset={16}
         alignOffset={-8}
         className="p-0"
+        collisionPadding={16}
       >
         <EditPopoverInner id={id} />
       </PopoverContent>

@@ -20,7 +20,18 @@ type ColorPickerProps = {
 export const ColorPicker = (props: ColorPickerProps) => {
   const { color, onColorChange, className } = props;
 
-  const colors = props.colors ?? ["#000000", "#ffffff"];
+  const colors = props.colors ?? [
+    "#000000",
+    "#ffffff",
+    "#0f172a",
+    "#F1F5F9",
+    "#64748B",
+    "#E6007E",
+    "#F8FAFC",
+    "#009DD1",
+    "#F1F5F9",
+    "#FF0000",
+  ];
 
   return (
     <Popover>
