@@ -108,6 +108,7 @@ export const MediaInput = (props: MediaInputProps) => {
 
   const handleSourceDelete = async (src: string) => {
     setSources((prev) => prev.filter((s) => s !== src));
+    onFilesChange?.(sources.filter((s) => s !== src));
 
     await fetch("/api/uploadthing/delete", {
       method: "POST",

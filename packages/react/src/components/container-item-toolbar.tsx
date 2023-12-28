@@ -1,13 +1,14 @@
 import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type ContentItem } from "@simple-builder/server";
+import { format } from "date-fns";
 import {
   AlignHorizontalJustifyStartIcon,
   AlignHorizontalSpaceAroundIcon,
   ArrowDown,
   ArrowUp,
+  CalendarIcon,
   Edit2Icon,
-  SaveIcon,
   ScanIcon,
   Trash2Icon,
 } from "lucide-react";
@@ -41,13 +42,16 @@ import {
 } from "~/components/ui/popover";
 
 import { builder } from "~/lib/builder";
-import { spacing } from "~/lib/utils";
+import { cn, spacing } from "~/lib/utils";
 import type { ComponentInput, InputType } from "~/types";
 import { BackgroundPicker } from "./ui/background-picker";
+import { Calendar } from "./ui/calendar";
 import { ColorPicker } from "./ui/color-picker";
 import { AdvancedInput, Input } from "./ui/input";
+import { MediaInput } from "./ui/media-input";
 import { Switch } from "./ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Textarea } from "./ui/textarea";
 import { Toggle } from "./ui/toggle";
 
 type ContainerItemToolbarProps = {
@@ -174,10 +178,18 @@ const ContainerItemForm = (props: ContainerItemFormProps) => {
     });
   };
 
+  React.useEffect(() => {
+    // @ts-expect-error - hack to submit on change
+    const subscription = form.watch(form.handleSubmit(onSubmit));
+
+    // @ts-expect-error - hack to submit on change
+    return () => subscription.unsubscribe();
+  }, [form.watch, form.handleSubmit]);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="space-y-6 p-4">
+        <div className="space-y-4 p-4">
           {(component.inputs || []).map((input) => (
             <FormField
               key={input.name}
@@ -188,11 +200,6 @@ const ContainerItemForm = (props: ContainerItemFormProps) => {
               )}
             />
           ))}
-        </div>
-        <div className="border-t p-4">
-          <Button type="submit" size="sm">
-            <SaveIcon className="mr-2 h-4 w-4" /> Opslaan
-          </Button>
         </div>
       </form>
     </Form>
@@ -266,7 +273,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
   });
 
   React.useEffect(() => {
+    // @ts-expect-error - hack to submit on change
     const subscription = form.watch(form.handleSubmit(onSubmit));
+
+    // @ts-expect-error - hack to submit on change
     return () => subscription.unsubscribe();
   }, [form.watch, form.handleSubmit]);
 
@@ -702,6 +712,97 @@ const RenderInput = (props: RenderInputProps) => {
           <FormMessage />
         </FormItem>
       );
+    case "longText":
+      return (
+        <FormItem>
+          <FormLabel>{input.friendlyName || input.name}</FormLabel>
+          <FormControl>
+            <Textarea {...field} />
+          </FormControl>
+          {input.helperText && (
+            <FormDescription>{input.helperText}</FormDescription>
+          )}
+          <FormMessage />
+        </FormItem>
+      );
+    case "richText":
+      return (
+        <FormItem>
+          <FormLabel>{input.friendlyName || input.name}</FormLabel>
+          <FormControl>
+            <Textarea {...field} />
+          </FormControl>
+          {input.helperText && (
+            <FormDescription>{input.helperText}</FormDescription>
+          )}
+          <FormMessage />
+        </FormItem>
+      );
+    case "number":
+      return (
+        <FormItem>
+          <FormLabel>{input.friendlyName || input.name}</FormLabel>
+          <FormControl>
+            <Input type="number" {...field} />
+          </FormControl>
+          {input.helperText && (
+            <FormDescription>{input.helperText}</FormDescription>
+          )}
+          <FormMessage />
+        </FormItem>
+      );
+    case "color":
+      return (
+        <FormItem>
+          <FormLabel>{input.friendlyName || input.name}</FormLabel>
+          <FormControl>
+            <ColorPicker color={field.value} onColorChange={field.onChange} />
+          </FormControl>
+          {input.helperText && (
+            <FormDescription>{input.helperText}</FormDescription>
+          )}
+          <FormMessage />
+        </FormItem>
+      );
+    case "date":
+      return (
+        <FormItem>
+          <FormLabel>{input.friendlyName || input.name}</FormLabel>
+          <FormControl>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  size="sm"
+                  className={cn(
+                    "w-full flex justify-start text-left font-normal",
+                    !field.value && "text-muted-foreground",
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {field.value ? (
+                    format(field.value, "PPP")
+                  ) : (
+                    <span>Pick a date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={field.value}
+                  onSelect={field.onChange}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </FormControl>
+          {input.helperText && (
+            <FormDescription>{input.helperText}</FormDescription>
+          )}
+          <FormMessage />
+        </FormItem>
+      );
     case "boolean":
       return (
         <FormItem className="flex flex-row items-center justify-between space-y-0">
@@ -716,7 +817,29 @@ const RenderInput = (props: RenderInputProps) => {
         </FormItem>
       );
     case "file":
-      return null;
+      return (
+        <FormItem>
+          <FormLabel>{input.friendlyName || input.name}</FormLabel>
+          <FormControl>
+            <MediaInput
+              className="grid grid-cols-2 gap-1"
+              itemClassName="aspect-video h-auto w-full"
+              multiple={false}
+              onFilesChange={(files) => field.onChange(files[0])}
+              onError={(e) =>
+                console.error(
+                  "[media-input]: Title: " + e?.title,
+                  "media-input: Error: " + e?.description,
+                )
+              }
+            />
+          </FormControl>
+          {input.helperText && (
+            <FormDescription>{input.helperText}</FormDescription>
+          )}
+          <FormMessage />
+        </FormItem>
+      );
     default:
       throw new Error(
         `[simple-builder]: Input type "${props.type}" not supported`,

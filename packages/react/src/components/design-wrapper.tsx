@@ -32,7 +32,7 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
           src={src}
           alt=""
           fill
-          className="object-cover absolute inset-0 pointer-events-none"
+          className="object-cover absolute inset-0 pointer-events-none -z-[1]"
         />
       )}
       {container ? (

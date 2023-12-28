@@ -15,11 +15,11 @@ const config: Config = {
         "sb-foreground": "hsl(var(--sb-foreground))",
         "sb-primary": {
           DEFAULT: "hsl( var(--sb-primary))",
-          "sb-foreground": "hsl(var(--sb-primary-foreground))",
+          foreground: "hsl(var(--sb-primary-foreground))",
         },
         "sb-secondary": {
           DEFAULT: "hsl(var(--sb-secondary))",
-          sforeground: "hsl(var(--sb-secondary-foreground))",
+          foreground: "hsl(var(--sb-secondary-foreground))",
         },
         "sb-destructive": {
           DEFAULT: "hsl(var(--sb-destructive))",
