@@ -1,1 +1,1 @@
-export { BuilderContent } from "~/components/builder-content";
+export { default as BuilderContent } from "~/components/builder-content";

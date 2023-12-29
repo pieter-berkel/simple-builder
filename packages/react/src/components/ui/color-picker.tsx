@@ -29,7 +29,6 @@ export const ColorPicker = (props: ColorPickerProps) => {
     "#E6007E",
     "#F8FAFC",
     "#009DD1",
-    "#F1F5F9",
     "#FF0000",
   ];
 

@@ -179,10 +179,7 @@ const ContainerItemForm = (props: ContainerItemFormProps) => {
   };
 
   React.useEffect(() => {
-    // @ts-expect-error - hack to submit on change
-    const subscription = form.watch(form.handleSubmit(onSubmit));
-
-    // @ts-expect-error - hack to submit on change
+    const subscription = form.watch(() => form.handleSubmit(onSubmit)());
     return () => subscription.unsubscribe();
   }, [form.watch, form.handleSubmit]);
 
@@ -272,13 +269,8 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
     },
   });
 
-  React.useEffect(() => {
-    // @ts-expect-error - hack to submit on change
-    const subscription = form.watch(form.handleSubmit(onSubmit));
-
-    // @ts-expect-error - hack to submit on change
-    return () => subscription.unsubscribe();
-  }, [form.watch, form.handleSubmit]);
+  console.log("ERRORS", form.formState.errors);
+  console.log("VALUES", form.getValues());
 
   const onSubmit = (values: z.infer<typeof designSchema>) => {
     const { container, background, color, padding: p, margin: m } = values;
@@ -291,6 +283,8 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
       ? `${m.vertical}px ${m.horizontal}px`
       : `${m.top}px ${m.right}px ${m.bottom}px ${m.left}px`;
 
+    console.log("CALLING_PATCH_ITEM", "ITEM_ID: " + item.id);
+
     patchItem(item.id, {
       styles: {
         container,
@@ -301,6 +295,11 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
       },
     });
   };
+
+  React.useEffect(() => {
+    const subscription = form.watch(() => form.handleSubmit(onSubmit)());
+    return () => subscription.unsubscribe();
+  }, [form.watch, form.handleSubmit]);
 
   const [indipendentPadding, indipendentMargin] = form.watch([
     "padding.indipendent",

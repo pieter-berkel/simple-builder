@@ -1,8 +1,6 @@
 import type { ContentItem, MaybePromise } from "~/types";
 
 export type UpdatePageParams = ({ id: string } | { slug: string }) & {
-  name?: string;
-  slug?: string;
   content?: ContentItem[];
 };
 

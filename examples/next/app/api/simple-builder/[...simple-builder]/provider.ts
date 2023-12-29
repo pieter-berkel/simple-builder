@@ -6,22 +6,6 @@ import { db } from "~/server/db";
 import * as s from "~/server/db/schema";
 
 export const provider: Provider = {
-  async getPages() {
-    return await db.query.pages.findMany({
-      columns: { slug: true },
-    });
-  },
-
-  async getPage(params) {
-    const identifier = "id" in params ? "id" : "slug";
-    const value = "id" in params ? params.id : params.slug;
-
-    return await db.query.pages.findFirst({
-      where: (fields, { eq }) => eq(fields[identifier], value),
-      columns: { id: true, name: true, slug: true, content: true },
-    });
-  },
-
   async updatePage(params) {
     const identifier = "id" in params ? "id" : "slug";
     const value = "id" in params ? params.id : params.slug;

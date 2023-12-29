@@ -43,7 +43,12 @@ export const BuilderProvider = (props: BuilderProviderProps) => {
   );
 
   const getItem = React.useCallback(
-    (id: string) => findRecursive(content, (item) => item.id === id),
+    (id: string) => {
+      const res = findRecursive(content, (item) => item.id === id);
+      console.log("RES", res);
+
+      return res;
+    },
     [content],
   );
 
@@ -252,13 +257,14 @@ const findRecursive = <T extends any[]>(
     }
 
     if (item[key]) {
-      Object.keys(item[key] ?? {}).map((x) => {
+      const keys = Object.keys(item[key] ?? {});
+      for (const x of keys) {
         const found = findRecursive(item[key][x] as T, predicate, key);
 
         if (found) {
           return found;
         }
-      });
+      }
     }
   }
 };

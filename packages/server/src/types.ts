@@ -20,10 +20,3 @@ export type ContentItem = {
     margin?: string;
   };
 };
-
-export type Page = {
-  id: string | number;
-  name: string;
-  slug: string;
-  content: ContentItem[];
-};

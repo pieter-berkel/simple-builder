@@ -9,7 +9,7 @@ type BuilderContentProps = {
   content?: BuilderContentType;
 };
 
-export const BuilderContent = (props: BuilderContentProps) => {
+const BuilderContent = (props: BuilderContentProps) => {
   return (
     <BuilderProvider content={props.content}>
       <BuilderContentInner />
