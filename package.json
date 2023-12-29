@@ -14,7 +14,7 @@
     "format": "prettier \"**/*\" --ignore-unknown",
     "format:write": "pnpm format --write --list-different",
     "clean": "turbo run clean && git clean -xdf node_modules",
-    "release": "build && changeset publish"
+    "release": "turbo run build --filter=@simple-builder/* && changeset publish"
   },
   "dependencies": {
     "@changesets/cli": "^2.27.1",
