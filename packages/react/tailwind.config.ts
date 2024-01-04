@@ -47,6 +47,9 @@ const config: Config = {
         md: "calc(var(--sb-radius) - 2px)",
         sm: "calc(var(--sb-radius) - 4px)",
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
     },
   },
 };
