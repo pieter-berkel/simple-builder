@@ -66,24 +66,24 @@ export const ContainerItemToolbar = (props: ContainerItemToolbarProps) => {
   const { bringUp, bringDown } = useBuilder();
 
   return (
-    <div className="absolute z-20 top-1 right-1 rounded-md shadow flex flex-col gap-1 p-1 bg-sb-card text-sb-card-sb-foreground sb-item-toolbar opacity-0 transition-opacity">
-      <div className="h-10 p-1 border border-sb-input bg-sb-background rounded-md text-sm font-medium flex gap-1 items-center justify-start">
+    <div className="sb-absolute sb-z-20 sb-top-1 sb-right-1 sb-rounded-md sb-shadow sb-flex sb-flex-col sb-gap-1 sb-p-1 sb-bg-card sb-text-card-foreground sb-item-toolbar sb-opacity-0 sb-transition-opacity">
+      <div className="sb-h-10 sb-p-1 sb-border sb-border-input sb-bg-background sb-rounded-md sb-text-sm sb-font-medium sb-flex sb-gap-1 sb-items-center sb-justify-start">
         <EditButton id={contentId} />
         <Button
           variant="ghost"
-          className="w-8 h-8 p-0"
+          className="sb-w-8 sb-h-8 sb-p-0"
           onClick={() => bringUp(contentId)}
           disabled={!canBringUp}
         >
-          <ArrowUp className="h-5 w-5" />
+          <ArrowUp className="sb-h-5 sb-w-5" />
         </Button>
         <Button
           variant="ghost"
-          className="w-8 h-8 p-0"
+          className="sb-w-8 sb-h-8 sb-p-0"
           onClick={() => bringDown(contentId)}
           disabled={!canBringDown}
         >
-          <ArrowDown className="h-5 w-5" />
+          <ArrowDown className="sb-h-5 sb-w-5" />
         </Button>
         <DeleteButton contentId={contentId} />
       </div>
@@ -95,8 +95,8 @@ const EditButton = ({ id }: { id: string }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" className="w-8 h-8 p-0">
-          <Edit2Icon className="h-5 w-5" />
+        <Button variant="ghost" className="sb-w-8 sb-h-8 sb-p-0">
+          <Edit2Icon className="sb-h-5 sb-w-5" />
         </Button>
       </PopoverTrigger>
       <PopoverContent
@@ -104,7 +104,7 @@ const EditButton = ({ id }: { id: string }) => {
         align="start"
         sideOffset={16}
         alignOffset={-8}
-        className="p-0"
+        className="sb-p-0"
         collisionPadding={16}
       >
         <EditPopoverInner id={id} />
@@ -186,7 +186,7 @@ const ContainerItemForm = (props: ContainerItemFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="space-y-4 p-4">
+        <div className="sb-space-y-4 sb-p-4">
           {(component.inputs || []).map((input) => (
             <FormField
               key={input.name}
@@ -269,9 +269,6 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
     },
   });
 
-  console.log("ERRORS", form.formState.errors);
-  console.log("VALUES", form.getValues());
-
   const onSubmit = (values: z.infer<typeof designSchema>) => {
     const { container, background, color, padding: p, margin: m } = values;
 
@@ -282,8 +279,6 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
     const margin = !m.indipendent
       ? `${m.vertical}px ${m.horizontal}px`
       : `${m.top}px ${m.right}px ${m.bottom}px ${m.left}px`;
-
-    console.log("CALLING_PATCH_ITEM", "ITEM_ID: " + item.id);
 
     patchItem(item.id, {
       styles: {
@@ -309,7 +304,7 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="space-y-4 p-4">
+        <div className="sb-space-y-4 sb-p-4">
           <FormField
             control={form.control}
             name="background"
@@ -347,7 +342,7 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
             control={form.control}
             name="container"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between space-y-0">
+              <FormItem className="sb-flex sb-flex-row sb-items-center sb-justify-between sb-space-y-0">
                 <FormLabel>Volledige breedte</FormLabel>
                 <FormControl>
                   <Switch
@@ -360,10 +355,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
             )}
           />
           <hr />
-          <div className="space-y-2">
+          <div className="sb-space-y-2">
             <FormLabel>Padding</FormLabel>
-            <div className="grid grid-cols-[1fr,auto] gap-3">
-              <div className="grid grid-cols-2 items-center gap-3">
+            <div className="sb-grid sb-grid-cols-[1fr,auto] sb-gap-3">
+              <div className="sb-grid sb-grid-cols-2 sb-items-center sb-gap-3">
                 {!indipendentPadding ? (
                   <>
                     <FormField
@@ -375,10 +370,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalSpaceAroundIcon className="h-4 w-4" />
+                                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -396,10 +391,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalSpaceAroundIcon className="h-4 w-4 rotate-90" />
+                                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -420,10 +415,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalJustifyStartIcon className="h-4 w-4" />
+                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -442,10 +437,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalJustifyStartIcon className="h-4 w-4 rotate-90" />
+                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -463,10 +458,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalJustifyStartIcon className="h-4 w-4 rotate-180" />
+                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-180" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -484,10 +479,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalJustifyStartIcon className="h-4 w-4 -rotate-90" />
+                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb--rotate-90" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -499,20 +494,20 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                   </>
                 )}
               </div>
-              <div className="shrink-0">
+              <div className="sb-shrink-0">
                 <FormField
                   control={form.control}
                   name="padding.indipendent"
                   render={({ field }) => (
                     <FormControl>
                       <Toggle
-                        className="shrink-0 flex w-8 h-8 p-0"
+                        className="sb-shrink-0 sb-flex sb-w-8 sb-h-8 sb-p-0"
                         variant="outline"
                         size="sm"
                         pressed={field.value}
                         onPressedChange={field.onChange}
                       >
-                        <ScanIcon className="h-4 w-4" />
+                        <ScanIcon className="sb-h-4 sb-w-4" />
                       </Toggle>
                     </FormControl>
                   )}
@@ -521,10 +516,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
             </div>
             <FormMessage />
           </div>
-          <div className="space-y-2">
+          <div className="sb-space-y-2">
             <FormLabel>Margin</FormLabel>
-            <div className="grid grid-cols-[1fr,auto] gap-3">
-              <div className="grid grid-cols-2 items-center gap-3">
+            <div className="sb-grid sb-grid-cols-[1fr,auto] sb-gap-3">
+              <div className="sb-grid sb-grid-cols-2 sb-items-center sb-gap-3">
                 {!indipendentMargin ? (
                   <>
                     <FormField
@@ -536,10 +531,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalSpaceAroundIcon className="h-4 w-4" />
+                                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -557,10 +552,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalSpaceAroundIcon className="h-4 w-4 rotate-90" />
+                                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -581,10 +576,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalJustifyStartIcon className="h-4 w-4" />
+                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -603,10 +598,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalJustifyStartIcon className="h-4 w-4 rotate-90" />
+                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -624,10 +619,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalJustifyStartIcon className="h-4 w-4 rotate-180" />
+                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-180" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -645,10 +640,10 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                             <AdvancedInput
                               {...field}
                               prepend={
-                                <AlignHorizontalJustifyStartIcon className="h-4 w-4 -rotate-90" />
+                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb--rotate-90" />
                               }
                               append={
-                                <span className="text-sb-muted-sb-foreground">
+                                <span className="sb-text-muted-foreground">
                                   px
                                 </span>
                               }
@@ -660,20 +655,20 @@ const ItemDesignForm = (props: ItemDesignFormProps) => {
                   </>
                 )}
               </div>
-              <div className="shrink-0">
+              <div className="sb-shrink-0">
                 <FormField
                   control={form.control}
                   name="margin.indipendent"
                   render={({ field }) => (
                     <FormControl>
                       <Toggle
-                        className="shrink-0 flex w-8 h-8 p-0"
+                        className="sb-shrink-0 sb-flex sb-w-8 sb-h-8 sb-p-0"
                         variant="outline"
                         size="sm"
                         pressed={field.value}
                         onPressedChange={field.onChange}
                       >
-                        <ScanIcon className="h-4 w-4" />
+                        <ScanIcon className="sb-h-4 sb-w-4" />
                       </Toggle>
                     </FormControl>
                   )}
@@ -774,11 +769,11 @@ const RenderInput = (props: RenderInputProps) => {
                   variant={"outline"}
                   size="sm"
                   className={cn(
-                    "w-full flex justify-start text-left font-normal",
-                    !field.value && "text-muted-foreground",
+                    "sb-w-full sb-flex sb-justify-start sb-text-left sb-font-normal",
+                    !field.value && "sb-text-muted-foreground",
                   )}
                 >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  <CalendarIcon className="sb-mr-2 sb-h-4 sb-w-4" />
                   {field.value ? (
                     format(field.value, "PPP")
                   ) : (
@@ -786,7 +781,7 @@ const RenderInput = (props: RenderInputProps) => {
                   )}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
+              <PopoverContent className="sb-w-auto sb-p-0" align="start">
                 <Calendar
                   mode="single"
                   selected={field.value}
@@ -804,7 +799,7 @@ const RenderInput = (props: RenderInputProps) => {
       );
     case "boolean":
       return (
-        <FormItem className="flex flex-row items-center justify-between space-y-0">
+        <FormItem className="sb-flex sb-flex-row sb-items-center sb-justify-between sb-space-y-0">
           <FormLabel>{input.friendlyName || input.name}</FormLabel>
           <FormControl>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
@@ -821,8 +816,8 @@ const RenderInput = (props: RenderInputProps) => {
           <FormLabel>{input.friendlyName || input.name}</FormLabel>
           <FormControl>
             <MediaInput
-              className="grid grid-cols-2 gap-1"
-              itemClassName="aspect-video h-auto w-full"
+              className="sb-grid sb-grid-cols-2 sb-gap-1"
+              itemClassName="sb-aspect-video sb-h-auto sb-w-full"
               multiple={false}
               onFilesChange={(files) => field.onChange(files[0])}
               onError={(e) =>
@@ -852,8 +847,11 @@ const DeleteButton = ({ contentId }: { contentId: string }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="ghost" className="w-8 h-8 p-0 text-sb-destructive">
-          <Trash2Icon className="h-5 w-5" />
+        <Button
+          variant="ghost"
+          className="sb-w-8 sb-h-8 sb-p-0 sb-text-destructive"
+        >
+          <Trash2Icon className="sb-h-5 sb-w-5" />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

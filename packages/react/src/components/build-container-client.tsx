@@ -45,7 +45,7 @@ export const BuildContainerInner = (props: BuildContainerProps) => {
 
       {items.map((item, i) => (
         <React.Fragment key={item.id}>
-          <div className="relative sb-container-item">
+          <div className="sb-relative sb-container-item">
             <DesignWrapper styles={item.styles}>
               {builder.bindComponent(item, true)}
             </DesignWrapper>
@@ -86,8 +86,8 @@ const AddContentButton = (props: AddContentButtonProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>{props.children}</PopoverTrigger>
-      <PopoverContent className="p-1">
-        <div className="grid grid-cols-2 gap-2">
+      <PopoverContent className="sb-p-1">
+        <div className="sb-grid sb-grid-cols-2 sb-gap-2">
           {components.map((component) => {
             const Icon = component.icon ?? ImageIcon;
 
@@ -95,7 +95,7 @@ const AddContentButton = (props: AddContentButtonProps) => {
               <PopoverClose key={component.name} asChild>
                 <Button
                   variant="ghost"
-                  className="justify-start"
+                  className="sb-justify-start"
                   onClick={() => {
                     addContent(
                       component.name,
@@ -105,7 +105,7 @@ const AddContentButton = (props: AddContentButtonProps) => {
                     );
                   }}
                 >
-                  <Icon className="mr-2 h-4 w-4 shrink-0" />
+                  <Icon className="sb-mr-2 sb-h-4 sb-w-4 sb-shrink-0" />
                   {component.friendlyName ?? component.name}
                 </Button>
               </PopoverClose>
@@ -122,9 +122,9 @@ const AddContentPlaceholder = (
 ) => {
   return (
     <AddContentButton {...props}>
-      <div className="flex justify-center bg-sb-primary/50 p-4">
+      <div className="sb-flex sb-justify-center sb-bg-primary/50 p-4">
         <Button size="sm">
-          <PlusIcon className="mr-2 h-4 w-4" />
+          <PlusIcon className="sb-mr-2 sb-h-4 sb-w-4" />
           Blok Toevoegen
         </Button>
       </div>
@@ -137,12 +137,12 @@ const AddContentDividerButton = (
 ) => {
   return (
     <AddContentButton {...props}>
-      <div className="w-full h-1 -my-[2px] bg-sb-primary relative z-20 opacity-0 add-content-divider-button transition-opacity">
+      <div className="sb-w-full sb-h-1 sb--my-[2px] sb-bg-primary sb-relative sb-z-20 sb-opacity-0 add-content-divider-button sb-transition-opacity">
         <Button
           size="sm"
-          className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 shadow"
+          className="sb-absolute sb-left-1/2 sb-top-1/2 sb--translate-y-1/2 sb--translate-x-1/2 sb-shadow"
         >
-          <PlusIcon className="mr-2 h-4 w-4" />
+          <PlusIcon className="sb-mr-2 sb-h-4 sb-w-4" />
           Blok Toevoegen
         </Button>
       </div>

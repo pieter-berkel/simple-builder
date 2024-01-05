@@ -7,18 +7,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "~/lib/utils";
 
 const toggleVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-sb-background transition-colors hover:bg-sb-muted hover:text-sb-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sb-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-sb-accent data-[state=on]:text-sb-accent-foreground",
+  "sb-inline-flex sb-items-center sb-justify-center sb-rounded-md sb-text-sm sb-font-medium sb-ring-offset-background sb-transition-colors hover:sb-bg-muted hover:sb-text-muted-foreground focus-visible:sb-outline-none focus-visible:sb-ring-1 focus-visible:sb-ring-ring focus-visible:sb-ring-offset-2 disabled:sb-pointer-events-none disabled:sb-opacity-50 data-[state=on]:sb-bg-accent data-[state=on]:sb-text-accent-foreground",
   {
     variants: {
       variant: {
-        default: "bg-transparent",
+        default: "sb-bg-transparent",
         outline:
-          "border border-input bg-transparent hover:bg-sb-accent hover:text-sb-accent-foreground",
+          "sb-border sb-border-input sb-bg-transparent hover:sb-bg-accent hover:sb-text-accent-foreground",
       },
       size: {
-        default: "h-10 px-3",
-        sm: "h-9 px-2.5",
-        lg: "h-11 px-5",
+        default: "sb-h-10 sb-px-3",
+        sm: "sb-h-9 sb-px-2.5",
+        lg: "sb-h-11 sb-px-5",
       },
     },
     defaultVariants: {

@@ -39,32 +39,32 @@ export const ColorPicker = (props: ColorPickerProps) => {
           variant="outline"
           size="sm"
           className={cn(
-            "justify-start text-left font-normal normal-case w-full",
-            !color && "text-sb-muted-foreground",
+            "sb-justify-start sb-text-left sb-font-normal sb-normal-case sb-w-full",
+            !color && "sb-text-muted-foreground",
             className,
           )}
         >
-          <div className="w-full flex items-center gap-2">
+          <div className="sb-w-full sb-flex sb-items-center sb-gap-2">
             {color ? (
               <div
-                className="h-4 w-4 rounded !bg-center !bg-cover transition-all border"
+                className="sb-h-4 sb-w-4 sb-rounded !sb-bg-center !sb-bg-cover sb-transition-all sb-border"
                 style={{ background: color }}
               />
             ) : (
-              <PaintbrushIcon className="h-4 w-4" />
+              <PaintbrushIcon className="sb-h-4 sb-w-4" />
             )}
-            <div className="truncate flex-1">
+            <div className="sb-truncate sb-flex-1">
               {color ? color : "Kies een kleur"}
             </div>
           </div>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-64 p-4 flex flex-wrap gap-1">
+      <PopoverContent className="sb-w-64 sb-p-4 sb-flex sb-flex-wrap sb-gap-1">
         {colors.map((s) => (
           <div
             key={s}
             style={{ background: s }}
-            className="rounded-md h-6 w-6 cursor-pointer active:scale-105 border"
+            className="sb-rounded-md sb-h-6 sb-w-6 sb-cursor-pointer active:sb-scale-105 sb-border"
             onClick={() => onColorChange(s)}
           />
         ))}

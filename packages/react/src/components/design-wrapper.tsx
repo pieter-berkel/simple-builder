@@ -24,7 +24,7 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
 
   return (
     <div
-      className={cn("relative", className)}
+      className={cn("sb-relative", className)}
       style={{ ...(!src && { background }), ...rest }}
     >
       {src && (
@@ -32,11 +32,11 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
           src={src}
           alt=""
           fill
-          className="object-cover absolute inset-0 pointer-events-none -z-[1]"
+          className="sb-object-cover sb-absolute sb-inset-0 sb-pointer-events-none sb--z-[1]"
         />
       )}
       {container ? (
-        <div className="container mx-auto">{children}</div>
+        <div className="sb-container sb-mx-auto">{children}</div>
       ) : (
         children
       )}

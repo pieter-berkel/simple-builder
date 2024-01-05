@@ -11,7 +11,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <input
         type={type}
         className={cn(
-          "flex h-8 w-full rounded-md border border-sb-input bg-sb-background px-3 py-1 text-sm ring-offset-sb-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-sb-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sb-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          "sb-flex sb-h-8 sb-w-full sb-font-roboto sb-rounded-md sb-border sb-border-input sb-bg-background sb-px-3 sb-py-1 sb-text-sm sb-ring-offset-background file:sb-border-0 file:sb-bg-transparent file:sb-text-sm file:sb-font-medium placeholder:sb-text-muted-foreground focus-visible:sb-outline-none focus-visible:sb-ring-1 focus-visible:ring-sb-ring focus-visible:sb-ring-offset-2 disabled:sb-cursor-not-allowed disabled:sb-opacity-50",
           className,
         )}
         ref={ref}
@@ -31,15 +31,15 @@ type AdvancedInputProps = {
 const AdvancedInput = React.forwardRef<HTMLInputElement, AdvancedInputProps>(
   ({ prepend, append, ...props }, ref) => {
     return (
-      <div className="relative">
-        <Input ref={ref} className="pl-9 pr-7 text-right" {...props} />
+      <div className="sb-relative">
+        <Input ref={ref} className="sb-pl-9 sb-pr-7 sb-text-right" {...props} />
         {prepend && (
-          <div className="absolute top-1/2 left-3 -translate-y-1/2">
+          <div className="sb-absolute sb-font-roboto sb-top-1/2 sb-left-3 sb--translate-y-1/2">
             {prepend}
           </div>
         )}
         {append && (
-          <div className="absolute top-1/2 right-3 -translate-y-1/2">
+          <div className="sb-absolute sb-font-roboto sb-top-1/2 sb-right-3 sb--translate-y-1/2">
             {append}
           </div>
         )}

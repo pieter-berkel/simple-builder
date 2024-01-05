@@ -124,14 +124,14 @@ export const MediaInput = (props: MediaInputProps) => {
             src={src}
             alt=""
             fill
-            className="absolute inset-0 object-cover pointer-events-none"
+            className="sb-absolute sb-inset-0 sb-object-cover sb-pointer-events-none"
           />
-          <div className="absolute right-1 top-1 z-30 flex items-center justify-end gap-3 opacity-0 transition-opacity group-hover:opacity-100">
+          <div className="sb-absolute sb-right-1 sb-top-1 sb-z-30 sb-flex sb-items-center sb-justify-end sb-gap-3 sb-opacity-0 sb-transition-opacity group-hover:sb-opacity-100">
             <button
-              className="flex h-8 w-8 items-center justify-center rounded-full border bg-sb-secondary text-sb-secondary-foreground opacity-90 shadow transition-opacity hover:opacity-100"
+              className="sb-flex sb-h-8 sb-w-8 sb-items-center sb-justify-center sb-rounded-full sb-border sb-bg-secondary sb-text-secondary-foreground sb-opacity-90 sb-shadow sb-transition-opacity hover:sb-opacity-100"
               onClick={() => handleSourceDelete(src)}
             >
-              <Trash2Icon className="h-4 w-4" />
+              <Trash2Icon className="sb-h-4 sb-w-4" />
             </button>
           </div>
         </MediaInputItem>
@@ -140,11 +140,11 @@ export const MediaInput = (props: MediaInputProps) => {
         <MediaInputItem
           key={i}
           className={cn(
-            "flex h-28 w-28 items-center justify-center",
+            "sb-flex sb-h-28 sb-w-28 sb-items-center sb-justify-center",
             props.itemClassName,
           )}
         >
-          <Loader2Icon className="h-6 w-6 animate-spin" />
+          <Loader2Icon className="sb-h-6 sb-w-6 sb-animate-spin" />
         </MediaInputItem>
       ))}
 
@@ -152,18 +152,18 @@ export const MediaInput = (props: MediaInputProps) => {
         <label
           htmlFor={id}
           className={cn(
-            "flex h-28 w-28 cursor-pointer items-center justify-center rounded-lg border",
+            "sb-flex sb-h-28 sb-w-28 sb-cursor-pointer sb-items-center sb-justify-center sb-rounded-lg sb-border",
             props.itemClassName,
           )}
         >
-          <PlusIcon className="h-6 w-6" />
+          <PlusIcon className="sb-h-6 sb-w-6" />
           <input
             id={id}
             type="file"
             onChange={handleFilesAdd}
             multiple={multiple}
             accept=".png,.jpg,.jpeg,.webp,.gif,.svg"
-            className="hidden"
+            className="sb-hidden"
           />
         </label>
       ) : null}
@@ -180,7 +180,7 @@ const MediaInputItem = (props: MediaInputItemProps) => {
   return (
     <div
       className={cn(
-        "relative h-28 w-28 overflow-hidden rounded-lg border",
+        "sb-relative sb-h-28 sb-w-28 sb-overflow-hidden sb-rounded-lg sb-border",
         props.className,
       )}
     >

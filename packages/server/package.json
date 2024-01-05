@@ -1,6 +1,6 @@
 {
   "name": "@simple-builder/server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "Server package for the simple builder package.",
   "repository": "https://github.com/pieter-berkel/simple-builder.git",

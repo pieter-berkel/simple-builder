@@ -5,21 +5,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "~/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex uppercase font-roboto items-center justify-center whitespace-nowrap rounded-md text-xs font-semibold ring-offset-sb-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sb-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "sb-inline-flex sb-uppercase sb-font-roboto sb-items-center sb-justify-center sb-whitespace-nowrap sb-rounded-md sb-text-xs sb-font-semibold ring-offset-background sb-transition-colors focus-visible:sb-outline-none focus-visible:sb-ring-2 focus-visible:ring-ring focus-visible:sb-ring-offset-2 disabled:sb-pointer-events-none disabled:sb-opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "bg-sb-primary text-sb-primary-foreground hover:bg-sb-primary/90",
+          "sb-bg-primary sb-text-primary-foreground hover:sb-bg-primary/90",
         destructive:
-          "bg-sb-destructive text-sb-destructive-foreground hover:bg-sb-destructive/90",
+          "sb-bg-destructive sb-text-destructive-foreground hover:sb-bg-destructive/90",
         outline:
-          "border border-sb-input bg-sb-background hover:bg-sb-accent hover:text-sb-accent-foreground",
-        ghost: "hover:bg-sb-accent hover:text-sb-accent-foreground",
+          "sb-border border-input sb-bg-background hover:sb-bg-accent hover:sb-text-accent-foreground",
+        ghost: "hover:sb-bg-accent hover:sb-text-accent-foreground",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-8 px-3 py-1",
+        default: "sb-h-10 sb-px-4 sb-py-2",
+        sm: "sb-h-8 sb-px-3 sb-py-1",
       },
     },
     defaultVariants: {
