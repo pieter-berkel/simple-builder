@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.3
+
+### Patch Changes
+
+- f20f069: fix issues with use client
+- Updated dependencies [f20f069]
+  - @simple-builder/server@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes

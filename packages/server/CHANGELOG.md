@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.3
+
+### Patch Changes
+
+- f20f069: fix issues with use client
+
 ## 1.0.2
 
 ### Patch Changes

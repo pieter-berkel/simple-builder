@@ -1,6 +1,6 @@
 {
   "name": "@simple-builder/react",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "React package for the simple builder package.",
   "repository": "https://github.com/pieter-berkel/simple-builder.git",
