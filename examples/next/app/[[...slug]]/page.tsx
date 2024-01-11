@@ -2,7 +2,7 @@ import * as React from "react";
 import { notFound } from "next/navigation";
 
 import { db } from "~/server/db";
-import { BuilderContentRenderer } from "./builder-content-renderer";
+import { StaticContentRenderer } from "./static-content-renderer";
 
 export async function generateStaticParams() {
   return [{ slug: ["/"] }];
@@ -19,5 +19,5 @@ export default async function Home({ params }: { params: { slug: string[] } }) {
     return notFound();
   }
 
-  return <BuilderContentRenderer content={page.content} />;
+  return <StaticContentRenderer content={page.content} />;
 }

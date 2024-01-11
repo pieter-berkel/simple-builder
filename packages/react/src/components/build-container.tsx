@@ -24,7 +24,11 @@ export const BuildContainer = (props: BuildContainerProps) => {
     return items.map((item) => builder.bindComponent(item));
   }
 
-  return <BuildContainerInner {...props} />;
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <BuildContainerInner {...props} />
+    </React.Suspense>
+  );
 };
 
 export default BuildContainer;

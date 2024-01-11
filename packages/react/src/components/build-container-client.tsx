@@ -22,7 +22,7 @@ type BuildContainerProps = {
   edit: boolean;
 };
 
-export const BuildContainerInner = (props: BuildContainerProps) => {
+const BuildContainerInner = (props: BuildContainerProps) => {
   const { id, name, content, multiple = false } = props;
 
   const items = Array.isArray(content) ? content : content?.[name] || [];
@@ -55,7 +55,6 @@ export const BuildContainerInner = (props: BuildContainerProps) => {
               canBringDown={i < items.length - 1}
             />
           </div>
-
           {multiple && (
             <AddContentDividerButton
               parent={id}
