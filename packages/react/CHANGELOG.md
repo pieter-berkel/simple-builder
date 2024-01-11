@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.4
+
+### Patch Changes
+
+- fix: add design wrapper arround components inside static content
+- Updated dependencies
+  - @simple-builder/server@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes
