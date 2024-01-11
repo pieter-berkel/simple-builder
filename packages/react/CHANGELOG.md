@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.2
+
+### Patch Changes
+
+- d4020dd: Added class prefix and font family
+- Updated dependencies [d4020dd]
+  - @simple-builder/server@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes
