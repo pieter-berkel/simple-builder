@@ -13,11 +13,8 @@ export type ContentItem = {
   component: string;
   props?: Record<string, unknown>;
   styles?: {
-    color?: string;
-    background?: string;
     container?: boolean;
-    padding?: string;
-    margin?: string;
-    [key: string]: unknown;
+    desktop?: Record<string, unknown>;
+    mobile?: Record<string, unknown>;
   };
 };

@@ -24,6 +24,7 @@ import { BackgroundPicker } from "./ui/background-picker";
 import { ColorPicker } from "./ui/color-picker";
 import { AdvancedInput } from "./ui/input";
 import { Switch } from "./ui/switch";
+import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { Toggle } from "./ui/toggle";
 
 type ItemDesignFormProps = {
@@ -129,377 +130,386 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="sb-space-y-4 sb-p-4">
-          <FormField
-            control={form.control}
-            name="background"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Achtergrond</FormLabel>
-                <FormControl>
-                  <BackgroundPicker
-                    background={field.value}
-                    onBackgroundChange={field.onChange}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="color"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Inhoud kleur</FormLabel>
-                <FormControl>
-                  <ColorPicker
-                    color={field.value}
-                    onColorChange={field.onChange}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <hr />
-          <FormField
-            control={form.control}
-            name="container"
-            render={({ field }) => (
-              <FormItem className="sb-flex sb-flex-row sb-items-center sb-justify-between sb-space-y-0">
-                <FormLabel>Volledige breedte</FormLabel>
-                <FormControl>
-                  <Switch
-                    checked={!field.value}
-                    onCheckedChange={(v) => field.onChange(!v)}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <hr />
-          <div className="sb-space-y-2">
-            <FormLabel>Padding</FormLabel>
-            <div className="sb-grid sb-grid-cols-[1fr,auto] sb-gap-3">
-              <div className="sb-grid sb-grid-cols-2 sb-items-center sb-gap-3">
-                {!indipendentPadding ? (
-                  <>
-                    <FormField
-                      control={form.control}
-                      name="padding.horizontal"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="padding.vertical"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <FormField
-                      control={form.control}
-                      name="padding.left"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
+          <Tabs>
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="desktop">Desktop</TabsTrigger>
+              <TabsTrigger value="mobile">Mobiel</TabsTrigger>
+            </TabsList>
+          </Tabs>
 
-                    <FormField
-                      control={form.control}
-                      name="padding.top"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
+          <div className="sb-space-y-4">
+            <FormField
+              control={form.control}
+              name="background"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Achtergrond</FormLabel>
+                  <FormControl>
+                    <BackgroundPicker
+                      background={field.value}
+                      onBackgroundChange={field.onChange}
                     />
-                    <FormField
-                      control={form.control}
-                      name="padding.right"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-180" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="color"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Inhoud kleur</FormLabel>
+                  <FormControl>
+                    <ColorPicker
+                      color={field.value}
+                      onColorChange={field.onChange}
                     />
-                    <FormField
-                      control={form.control}
-                      name="padding.bottom"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb--rotate-90" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <hr />
+            <FormField
+              control={form.control}
+              name="container"
+              render={({ field }) => (
+                <FormItem className="sb-flex sb-flex-row sb-items-center sb-justify-between sb-space-y-0">
+                  <FormLabel>Volledige breedte</FormLabel>
+                  <FormControl>
+                    <Switch
+                      checked={!field.value}
+                      onCheckedChange={(v) => field.onChange(!v)}
                     />
-                  </>
-                )}
-              </div>
-              <div className="sb-shrink-0">
-                <FormField
-                  control={form.control}
-                  name="padding.indipendent"
-                  render={({ field }) => (
-                    <FormControl>
-                      <Toggle
-                        className="sb-shrink-0 sb-flex sb-w-8 sb-h-8 sb-p-0"
-                        variant="outline"
-                        size="sm"
-                        pressed={field.value}
-                        onPressedChange={field.onChange}
-                      >
-                        <ScanIcon className="sb-h-4 sb-w-4" />
-                      </Toggle>
-                    </FormControl>
-                  )}
-                />
-              </div>
-            </div>
-            <FormMessage />
-          </div>
-          <div className="sb-space-y-2">
-            <FormLabel>Margin</FormLabel>
-            <div className="sb-grid sb-grid-cols-[1fr,auto] sb-gap-3">
-              <div className="sb-grid sb-grid-cols-2 sb-items-center sb-gap-3">
-                {!indipendentMargin ? (
-                  <>
-                    <FormField
-                      control={form.control}
-                      name="margin.horizontal"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="margin.vertical"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <FormField
-                      control={form.control}
-                      name="margin.left"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <hr />
+            <div className="sb-space-y-2">
+              <FormLabel>Padding</FormLabel>
+              <div className="sb-grid sb-grid-cols-[1fr,auto] sb-gap-3">
+                <div className="sb-grid sb-grid-cols-2 sb-items-center sb-gap-3">
+                  {!indipendentPadding ? (
+                    <>
+                      <FormField
+                        control={form.control}
+                        name="padding.horizontal"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="padding.vertical"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <FormField
+                        control={form.control}
+                        name="padding.left"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
 
-                    <FormField
-                      control={form.control}
-                      name="margin.top"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="margin.right"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-180" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="margin.bottom"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <AdvancedInput
-                              {...field}
-                              prepend={
-                                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb--rotate-90" />
-                              }
-                              append={
-                                <span className="sb-text-muted-foreground">
-                                  px
-                                </span>
-                              }
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                  </>
-                )}
-              </div>
-              <div className="sb-shrink-0">
-                <FormField
-                  control={form.control}
-                  name="margin.indipendent"
-                  render={({ field }) => (
-                    <FormControl>
-                      <Toggle
-                        className="sb-shrink-0 sb-flex sb-w-8 sb-h-8 sb-p-0"
-                        variant="outline"
-                        size="sm"
-                        pressed={field.value}
-                        onPressedChange={field.onChange}
-                      >
-                        <ScanIcon className="sb-h-4 sb-w-4" />
-                      </Toggle>
-                    </FormControl>
+                      <FormField
+                        control={form.control}
+                        name="padding.top"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="padding.right"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-180" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="padding.bottom"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb--rotate-90" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </>
                   )}
-                />
+                </div>
+                <div className="sb-shrink-0">
+                  <FormField
+                    control={form.control}
+                    name="padding.indipendent"
+                    render={({ field }) => (
+                      <FormControl>
+                        <Toggle
+                          className="sb-shrink-0 sb-flex sb-w-8 sb-h-8 sb-p-0"
+                          variant="outline"
+                          size="sm"
+                          pressed={field.value}
+                          onPressedChange={field.onChange}
+                        >
+                          <ScanIcon className="sb-h-4 sb-w-4" />
+                        </Toggle>
+                      </FormControl>
+                    )}
+                  />
+                </div>
               </div>
+              <FormMessage />
             </div>
-            <FormMessage />
+            <div className="sb-space-y-2">
+              <FormLabel>Margin</FormLabel>
+              <div className="sb-grid sb-grid-cols-[1fr,auto] sb-gap-3">
+                <div className="sb-grid sb-grid-cols-2 sb-items-center sb-gap-3">
+                  {!indipendentMargin ? (
+                    <>
+                      <FormField
+                        control={form.control}
+                        name="margin.horizontal"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="margin.vertical"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <FormField
+                        control={form.control}
+                        name="margin.left"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="margin.top"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="margin.right"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-180" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="margin.bottom"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <AdvancedInput
+                                {...field}
+                                prepend={
+                                  <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb--rotate-90" />
+                                }
+                                append={
+                                  <span className="sb-text-muted-foreground">
+                                    px
+                                  </span>
+                                }
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  )}
+                </div>
+                <div className="sb-shrink-0">
+                  <FormField
+                    control={form.control}
+                    name="margin.indipendent"
+                    render={({ field }) => (
+                      <FormControl>
+                        <Toggle
+                          className="sb-shrink-0 sb-flex sb-w-8 sb-h-8 sb-p-0"
+                          variant="outline"
+                          size="sm"
+                          pressed={field.value}
+                          onPressedChange={field.onChange}
+                        >
+                          <ScanIcon className="sb-h-4 sb-w-4" />
+                        </Toggle>
+                      </FormControl>
+                    )}
+                  />
+                </div>
+              </div>
+              <FormMessage />
+            </div>
           </div>
         </div>
       </form>

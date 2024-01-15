@@ -2,13 +2,13 @@
 
 import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
-import { cva, type VariantProps } from "class-variance-authority";
+import { tv, type VariantProps } from "tailwind-variants";
 
 import { cn } from "~/lib/utils";
 
-const labelVariants = cva(
-  "sb-text-sm sb-font-medium sb-font-roboto sb-leading-none peer-disabled:sb-cursor-not-allowed peer-disabled:sb-opacity-70",
-);
+const labelVariants = tv({
+  base: "sb-text-sm sb-font-medium sb-font-roboto sb-leading-none peer-disabled:sb-cursor-not-allowed peer-disabled:sb-opacity-70",
+});
 
 const Label = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
