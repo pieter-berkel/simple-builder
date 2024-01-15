@@ -40,6 +40,8 @@ builder.register(
     ],
     defaultStyles: {
       padding: "32px 0",
+      "border-radius": "32px",
+      overflow: "hidden",
     },
   },
 );

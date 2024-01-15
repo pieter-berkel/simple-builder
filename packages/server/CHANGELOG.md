@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.5
+
+### Patch Changes
+
+- allow usage of custom default styles in builder registery
+
 ## 1.0.4
 
 ### Patch Changes

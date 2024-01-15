@@ -18,5 +18,6 @@ export type ContentItem = {
     container?: boolean;
     padding?: string;
     margin?: string;
+    [key: string]: unknown;
   };
 };

@@ -45,13 +45,15 @@ const spacingSchema = z.discriminatedUnion("indipendent", [
   }),
 ]);
 
-const designSchema = z.object({
-  container: z.boolean(),
-  background: z.string(),
-  color: z.string(),
-  padding: spacingSchema,
-  margin: spacingSchema,
-});
+const designSchema = z
+  .object({
+    container: z.boolean(),
+    background: z.string(),
+    color: z.string(),
+    padding: spacingSchema,
+    margin: spacingSchema,
+  })
+  .passthrough();
 
 export const ItemDesignForm = (props: ItemDesignFormProps) => {
   const { item } = props;
@@ -64,6 +66,7 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
   const form = useForm<z.infer<typeof designSchema>>({
     resolver: zodResolver(designSchema),
     defaultValues: {
+      ...item.styles,
       container: item.styles?.container ?? true,
       background: item.styles?.background ?? "",
       color: item.styles?.color ?? "",
@@ -93,7 +96,7 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
   });
 
   const onSubmit = (values: z.infer<typeof designSchema>) => {
-    const { container, background, color, padding: p, margin: m } = values;
+    const { padding: p, margin: m, ...rest } = values;
 
     const padding = !p.indipendent
       ? `${p.vertical}px ${p.horizontal}px`
@@ -105,11 +108,9 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
 
     patchItem(item.id, {
       styles: {
-        container,
-        background,
-        color,
         padding,
         margin,
+        ...rest,
       },
     });
   };
