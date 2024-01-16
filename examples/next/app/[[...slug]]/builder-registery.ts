@@ -39,9 +39,11 @@ builder.register(
       },
     ],
     defaultStyles: {
-      padding: "32px 0",
-      "border-radius": "32px",
-      overflow: "hidden",
+      desktop: {
+        padding: "32px 0",
+        "border-radius": "32px",
+        overflow: "hidden",
+      },
     },
   },
 );
@@ -59,11 +61,13 @@ builder.register(
         defaultValue: "Hello World",
       },
     ],
-    defaultStyles: {
-      container: false,
-      color: "#ffffff",
-      background: "#000000",
-    },
+    // defaultStyles: {
+    //   container: false,
+    //   // desktop: {
+    //   //   color: "#ffffff",
+    //   //   background: "#000000",
+    //   // },
+    // },
   },
 );
 

@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { extendTailwindMerge } from "tailwind-merge";
+import { createTV } from "tailwind-variants";
 
 const twMerge = extendTailwindMerge({
   prefix: "sb-",
@@ -8,6 +9,12 @@ const twMerge = extendTailwindMerge({
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const tv = createTV({
+  twMergeConfig: {
+    prefix: "sb-",
+  },
+});
 
 export const insertAt = <T extends any[]>(
   items: T | undefined,
@@ -20,7 +27,15 @@ export const insertAt = <T extends any[]>(
 };
 
 export const spacing = {
-  parse: (input: string) => {
+  parse: (input: any) => {
+    if (typeof input !== "string")
+      return {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      };
+
     const matches = input.match(/(\d+)/gm);
 
     const [top = 0, right = 0, bottom = 0, left = 0] =
@@ -37,8 +52,28 @@ export const spacing = {
         return { top, right, bottom, left };
     }
   },
-  isIndipendent: (input: string) => {
-    const { top, right, bottom, left } = spacing.parse(input);
+  stringify: ({
+    top = 0,
+    right = 0,
+    bottom = 0,
+    left = 0,
+  }: {
+    top: number;
+    right: number;
+    bottom: number;
+    left: number;
+  }) => {
+    if ([right, bottom, left].every((v) => v === top)) {
+      if (top === 0) return;
+      return `${top}px`;
+    } else if (top === bottom && left === right) {
+      return `${top}px ${left}px`;
+    } else {
+      return `${top}px ${right}px ${bottom}px ${left}px`;
+    }
+  },
+  isIndipendent: (input?: any) => {
+    const { top, right, bottom, left } = spacing.parse(input || "");
     return top !== bottom || right !== left;
   },
 };

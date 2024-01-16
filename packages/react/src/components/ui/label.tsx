@@ -2,7 +2,9 @@
 
 import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
-import { tv, type VariantProps } from "tailwind-variants";
+import { type VariantProps } from "tailwind-variants";
+
+import { tv } from "~/lib/utils";
 
 const labelVariants = tv({
   base: "sb-text-sm sb-font-medium sb-font-roboto sb-leading-none peer-disabled:sb-cursor-not-allowed peer-disabled:sb-opacity-70",

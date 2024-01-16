@@ -18,9 +18,9 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 
+import { ContainerItemForm } from "./container-item-form";
 import { ItemDesignForm } from "./item-design-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import { ContainerItemForm } from "./container-item-form";
 
 type ContainerItemToolbarProps = {
   contentId: string;
@@ -99,9 +99,13 @@ const EditPopoverInner = (props: EditPopoverInnerProps) => {
 
   return (
     <Tabs>
-      <TabsList defaultValue="content">
-        <TabsTrigger value="content">Inhoud</TabsTrigger>
-        <TabsTrigger value="design">Design</TabsTrigger>
+      <TabsList variant="text" defaultValue="content">
+        <TabsTrigger variant="text" value="content">
+          Inhoud
+        </TabsTrigger>
+        <TabsTrigger variant="text" value="design">
+          Design
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="content">
         <ContainerItemForm item={item} />

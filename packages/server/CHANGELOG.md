@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.6
+
+### Patch Changes
+
+- Replaced cva with tailwind-variants, added new tabs variant, mobile en desktop design support.
+
 ## 1.0.5
 
 ### Patch Changes

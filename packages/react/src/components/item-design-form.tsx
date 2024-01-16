@@ -4,7 +4,9 @@ import { ContentItem } from "@simple-builder/server";
 import {
   AlignHorizontalJustifyStartIcon,
   AlignHorizontalSpaceAroundIcon,
+  MonitorIcon,
   ScanIcon,
+  SmartphoneIcon,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -19,6 +21,7 @@ import {
 } from "~/components/ui/form";
 
 import { spacing } from "~/lib/utils";
+import { builder } from "..";
 import { useBuilder } from "./context/builder-context";
 import { BackgroundPicker } from "./ui/background-picker";
 import { ColorPicker } from "./ui/color-picker";
@@ -49,69 +52,146 @@ const spacingSchema = z.discriminatedUnion("indipendent", [
 const designSchema = z
   .object({
     container: z.boolean(),
-    background: z.string(),
-    color: z.string(),
-    padding: spacingSchema,
-    margin: spacingSchema,
+    desktop: z
+      .object({
+        padding: spacingSchema.optional(),
+        margin: spacingSchema.optional(),
+      })
+      .passthrough()
+      .optional(),
+    mobile: z
+      .object({
+        padding: spacingSchema.optional(),
+        margin: spacingSchema.optional(),
+      })
+      .passthrough()
+      .optional(),
   })
   .passthrough();
 
 export const ItemDesignForm = (props: ItemDesignFormProps) => {
   const { item } = props;
 
-  const { patchItem } = useBuilder();
+  const component = builder.getComponent(item.component);
 
-  const initialPadding = spacing.parse((item.styles?.padding as string) ?? "");
-  const initialMargin = spacing.parse((item.styles?.margin as string) ?? "");
+  if (!component) {
+    throw new Error(
+      `[simple-builder]: Component "${item.component}" not found`,
+    );
+  }
+
+  const defaults = component.defaultStyles || {};
+
+  const { patchItem } = useBuilder();
+  const [device, setDevice] = React.useState("desktop");
+
+  const getDefaultDesktopValue = (key: string, initial: any = "") => {
+    const value = item.styles?.desktop?.[key];
+    const def = defaults?.desktop?.[key];
+
+    if (value !== undefined) {
+      return value;
+    } else if (def !== undefined) {
+      return def;
+    } else {
+      return initial;
+    }
+  };
+
+  const getDefaultMobileValue = (key: string, initial: any = "") => {
+    const value = item.styles?.mobile?.[key];
+    const desktopValue = item.styles?.desktop?.[key];
+
+    const def = defaults?.mobile?.[key];
+    const desktopDef = defaults?.desktop?.[key];
+
+    if (value !== undefined) {
+      return value;
+    } else if (def !== undefined) {
+      return def;
+    } else if (desktopValue !== undefined) {
+      return desktopValue;
+    } else if (desktopDef !== undefined) {
+      return desktopDef;
+    } else {
+      return initial;
+    }
+  };
+
+  const getSpacingValue = (str: any) => {
+    const parsed = spacing.parse(str);
+
+    return {
+      indipendent: spacing.isIndipendent(str),
+      horizontal: parsed.left,
+      vertical: parsed.top,
+      ...parsed,
+    };
+  };
 
   const form = useForm<z.infer<typeof designSchema>>({
     resolver: zodResolver(designSchema),
     defaultValues: {
-      ...item.styles,
-      container: item.styles?.container ?? true,
-      background: item.styles?.background ?? "",
-      color: item.styles?.color ?? "",
-      padding: {
-        indipendent: spacing.isIndipendent(
-          (item.styles?.padding as string) ?? "",
-        ),
-        horizontal: initialPadding.left,
-        vertical: initialPadding.top,
-        left: initialPadding.left,
-        right: initialPadding.right,
-        top: initialPadding.top,
-        bottom: initialPadding.bottom,
+      container: item.styles?.container || defaults.container || true,
+      desktop: {
+        background: getDefaultDesktopValue("background"),
+        color: getDefaultDesktopValue("color"),
+        padding: getSpacingValue(getDefaultDesktopValue("padding")),
+        margin: getSpacingValue(getDefaultDesktopValue("margin")),
       },
-      margin: {
-        indipendent: spacing.isIndipendent(
-          (item.styles?.margin as string) ?? "",
-        ),
-        horizontal: initialMargin.left,
-        vertical: initialMargin.top,
-        left: initialMargin.left,
-        right: initialMargin.right,
-        top: initialMargin.top,
-        bottom: initialMargin.bottom,
+      mobile: {
+        background: getDefaultMobileValue("background"),
+        color: getDefaultMobileValue("color"),
+        padding: getSpacingValue(getDefaultMobileValue("padding")),
+        margin: getSpacingValue(getDefaultMobileValue("margin")),
       },
     },
   });
 
   const onSubmit = (values: z.infer<typeof designSchema>) => {
-    const { padding: p, margin: m, ...rest } = values;
+    const { container } = values;
 
-    const padding = !p.indipendent
-      ? `${p.vertical}px ${p.horizontal}px`
-      : `${p.top}px ${p.right}px ${p.bottom}px ${p.left}px`;
+    const getPatchedDeviceValues = (
+      device: "desktop" | "mobile" = "desktop",
+    ) => {
+      // @ts-expect-error TODO: fix this
+      return Object.entries(values[device]).reduce((acc, [key, value]) => {
+        let res = value;
 
-    const margin = !m.indipendent
-      ? `${m.vertical}px ${m.horizontal}px`
-      : `${m.top}px ${m.right}px ${m.bottom}px ${m.left}px`;
+        if (key === "padding" || key === "margin") {
+          const data = value as z.infer<typeof spacingSchema>;
+
+          const params = data.indipendent
+            ? data
+            : {
+                top: data.vertical,
+                bottom: data.vertical,
+                left: data.horizontal,
+                right: data.horizontal,
+              };
+
+          res = spacing.stringify(params);
+        }
+
+        return {
+          ...acc,
+          ...(!!res && defaults?.[device]?.[key] !== res ? { [key]: res } : {}),
+        };
+      }, {});
+    };
+
+    const patchedDesktopValues = getPatchedDeviceValues();
+    const patchedMobileValues = getPatchedDeviceValues("mobile");
 
     patchItem(item.id, {
       styles: {
-        padding,
-        margin,
-        ...rest,
+        ...(container === false && { container }),
+        ...(Object.keys(patchedDesktopValues).length && {
+          desktop: patchedDesktopValues,
+        }),
+        ...(Object.keys(patchedMobileValues).length && {
+          mobile: patchedMobileValues,
+        }),
       },
     });
   };
@@ -122,25 +202,31 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
   }, [form.watch, form.handleSubmit]);
 
   const [indipendentPadding, indipendentMargin] = form.watch([
-    "padding.indipendent",
-    "margin.indipendent",
+    `${device}.padding.indipendent`,
+    `${device}.margin.indipendent`,
   ]);
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="sb-space-y-4 sb-p-4">
-          <Tabs>
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="desktop">Desktop</TabsTrigger>
-              <TabsTrigger value="mobile">Mobiel</TabsTrigger>
+          <Tabs defaultValue={device} onValueChange={setDevice}>
+            <TabsList className="sb-h-9 sb-grid sb-w-full sb-grid-cols-2">
+              <TabsTrigger value="desktop" className="sb-text-xs">
+                <MonitorIcon className="sb-h-4 sb-w-4 sb-mr-2" />
+                <span>Desktop</span>
+              </TabsTrigger>
+              <TabsTrigger value="mobile" className="sb-text-xs">
+                <SmartphoneIcon className="sb-h-4 sb-w-4 sb-mr-2" />
+                <span>Mobiel</span>
+              </TabsTrigger>
             </TabsList>
           </Tabs>
-
           <div className="sb-space-y-4">
             <FormField
               control={form.control}
-              name="background"
+              key={`${device}.background`}
+              name={`${device}.background`}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Achtergrond</FormLabel>
@@ -156,7 +242,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
             />
             <FormField
               control={form.control}
-              name="color"
+              key={`${device}.color`}
+              name={`${device}.color`}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Inhoud kleur</FormLabel>
@@ -196,7 +283,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                     <>
                       <FormField
                         control={form.control}
-                        name="padding.horizontal"
+                        key={`${device}.padding.horizontal`}
+                        name={`${device}.padding.horizontal`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -217,7 +305,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                       />
                       <FormField
                         control={form.control}
-                        name="padding.vertical"
+                        key={`${device}.padding.vertical`}
+                        name={`${device}.padding.vertical`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -241,7 +330,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                     <>
                       <FormField
                         control={form.control}
-                        name="padding.left"
+                        key={`${device}.padding.left`}
+                        name={`${device}.padding.left`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -263,7 +353,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
 
                       <FormField
                         control={form.control}
-                        name="padding.top"
+                        key={`${device}.padding.top`}
+                        name={`${device}.padding.top`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -284,7 +375,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                       />
                       <FormField
                         control={form.control}
-                        name="padding.right"
+                        key={`${device}.padding.right`}
+                        name={`${device}.padding.right`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -305,7 +397,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                       />
                       <FormField
                         control={form.control}
-                        name="padding.bottom"
+                        key={`${device}.padding.bottom`}
+                        name={`${device}.padding.bottom`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -330,7 +423,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                 <div className="sb-shrink-0">
                   <FormField
                     control={form.control}
-                    name="padding.indipendent"
+                    key={`${device}.padding.indipendent`}
+                    name={`${device}.padding.indipendent`}
                     render={({ field }) => (
                       <FormControl>
                         <Toggle
@@ -357,7 +451,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                     <>
                       <FormField
                         control={form.control}
-                        name="margin.horizontal"
+                        key={`${device}.margin.horizontal`}
+                        name={`${device}.margin.horizontal`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -378,7 +473,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                       />
                       <FormField
                         control={form.control}
-                        name="margin.vertical"
+                        key={`${device}.margin.vertical`}
+                        name={`${device}.margin.vertical`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -402,7 +498,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                     <>
                       <FormField
                         control={form.control}
-                        name="margin.left"
+                        key={`${device}.margin.left`}
+                        name={`${device}.margin.left`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -424,7 +521,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
 
                       <FormField
                         control={form.control}
-                        name="margin.top"
+                        key={`${device}.margin.top`}
+                        name={`${device}.margin.top`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -445,7 +543,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                       />
                       <FormField
                         control={form.control}
-                        name="margin.right"
+                        key={`${device}.margin.right`}
+                        name={`${device}.margin.right`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -466,7 +565,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                       />
                       <FormField
                         control={form.control}
-                        name="margin.bottom"
+                        key={`${device}.margin.bottom`}
+                        name={`${device}.margin.bottom`}
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
@@ -491,7 +591,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                 <div className="sb-shrink-0">
                   <FormField
                     control={form.control}
-                    name="margin.indipendent"
+                    key={`${device}.margin.indipendent`}
+                    name={`${device}.margin.indipendent`}
                     render={({ field }) => (
                       <FormControl>
                         <Toggle
