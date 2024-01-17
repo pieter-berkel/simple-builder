@@ -61,13 +61,22 @@ builder.register(
         defaultValue: "Hello World",
       },
     ],
-    // defaultStyles: {
-    //   container: false,
-    //   // desktop: {
-    //   //   color: "#ffffff",
-    //   //   background: "#000000",
-    //   // },
-    // },
+    defaultStyles: {
+      container: false,
+      desktop: {
+        color: "#ffffff",
+        background: "#cecece",
+        margin: "0 16px",
+        padding: "0 24px",
+        "border-radius": "25px",
+        overflow: "hidden",
+      },
+      mobile: {
+        "border-radius": "0px",
+        padding: "0px",
+        margin: "0px",
+      },
+    },
   },
 );
 

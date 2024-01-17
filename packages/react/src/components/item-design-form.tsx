@@ -154,6 +154,13 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
     const getPatchedDeviceValues = (
       device: "desktop" | "mobile" = "desktop",
     ) => {
+      const initital = Object.keys(item.styles?.[device] || {})
+        .filter((key) => !Object.keys(values[device]).includes(key))
+        .reduce(
+          (acc, key) => ({ ...acc, [key]: item.styles?.[device][key] }),
+          {},
+        );
+
       // @ts-expect-error TODO: fix this
       return Object.entries(values[device]).reduce((acc, [key, value]) => {
         let res = value;
@@ -177,7 +184,7 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
           ...acc,
           ...(res ? { [key]: res } : {}),
         };
-      }, {});
+      }, initital);
     };
 
     const patchedDesktopValues = getPatchedDeviceValues();

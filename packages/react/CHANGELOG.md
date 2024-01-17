@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.8
+
+### Patch Changes
+
+- fix bug with styles
+- Updated dependencies
+  - @simple-builder/server@1.0.8
+
 ## 1.0.7
 
 ### Patch Changes
