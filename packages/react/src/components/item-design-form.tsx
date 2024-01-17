@@ -175,7 +175,7 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
 
         return {
           ...acc,
-          ...(!!res && defaults?.[device]?.[key] !== res ? { [key]: res } : {}),
+          ...(res ? { [key]: res } : {}),
         };
       }, {});
     };

@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.7
+
+### Patch Changes
+
+- fix bug with not saving default styles
+- Updated dependencies
+  - @simple-builder/server@1.0.7
+
 ## 1.0.6
 
 ### Patch Changes

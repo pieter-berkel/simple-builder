@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.7
+
+### Patch Changes
+
+- fix bug with not saving default styles
+
 ## 1.0.6
 
 ### Patch Changes
