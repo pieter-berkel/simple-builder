@@ -62,7 +62,6 @@ builder.register(
       },
     ],
     defaultStyles: {
-      container: false,
       desktop: {
         color: "#ffffff",
         background: "#cecece",

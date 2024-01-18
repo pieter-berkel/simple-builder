@@ -44,10 +44,7 @@ export const BuilderProvider = (props: BuilderProviderProps) => {
 
   const getItem = React.useCallback(
     (id: string) => {
-      const res = findRecursive(content, (item) => item.id === id);
-      console.log("RES", res);
-
-      return res;
+      return findRecursive(content, (item) => item.id === id);
     },
     [content],
   );

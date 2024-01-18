@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.9
+
+### Patch Changes
+
+- Fixed issues with design properties
+- Updated dependencies
+  - @simple-builder/server@1.0.9
+
 ## 1.0.8
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@simple-builder/react",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": false,
   "description": "React package for the simple builder package.",
   "repository": "https://github.com/pieter-berkel/simple-builder.git",
@@ -44,7 +44,7 @@
     "@simple-builder/server": "workspace:*",
     "clsx": "^2.1.0",
     "date-fns": "^3.2.0",
-    "lucide-react": "^0.309.0",
+    "lucide-react": "^0.312.0",
     "react-day-picker": "^8.10.0",
     "react-hook-form": "^7.49.3",
     "server-only": "^0.0.1",
@@ -57,10 +57,10 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
-    "@types/react": "^18.2.47",
+    "@types/node": "^20.11.5",
+    "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "autoprefixer": "^10.4.16",
+    "autoprefixer": "^10.4.17",
     "postcss": "^8.4.33",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

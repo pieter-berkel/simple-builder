@@ -1,6 +1,6 @@
 {
   "name": "next-example",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -16,11 +16,11 @@
     "@simple-builder/react": "workspace:*",
     "@simple-builder/server": "workspace:*",
     "@uploadthing/react": "^6.1.0",
-    "better-sqlite3": "^9.2.2",
+    "better-sqlite3": "^9.3.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "drizzle-orm": "^0.29.3",
-    "lucide-react": "^0.309.0",
+    "lucide-react": "^0.312.0",
     "next": "14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,12 +30,12 @@
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.8",
-    "@types/node": "^20.11.0",
-    "@types/react": "^18.2.47",
+    "@types/node": "^20.11.5",
+    "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "autoprefixer": "^10.4.16",
+    "autoprefixer": "^10.4.17",
     "dotenv-cli": "^7.3.0",
-    "drizzle-kit": "^0.20.10",
+    "drizzle-kit": "^0.20.13",
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1",
     "typescript": "5.3.3"
