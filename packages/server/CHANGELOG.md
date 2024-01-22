@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.11
+
+### Patch Changes
+
+- add side padding to container inside design wrapper
+
 ## 1.0.10
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.11
+
+### Patch Changes
+
+- add side padding to container inside design wrapper
+- Updated dependencies
+  - @simple-builder/server@1.0.11
+
 ## 1.0.10
 
 ### Patch Changes
