@@ -20,6 +20,7 @@ import {
 
 import { ContainerItemForm } from "./container-item-form";
 import { ItemDesignForm } from "./item-design-form";
+import { ScrollArea } from "./ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 type ContainerItemToolbarProps = {
@@ -61,7 +62,7 @@ export const ContainerItemToolbar = (props: ContainerItemToolbarProps) => {
 
 const EditButton = ({ id }: { id: string }) => {
   return (
-    <Popover>
+    <Popover modal>
       <PopoverTrigger asChild>
         <Button variant="ghost" className="sb-w-8 sb-h-8 sb-p-0">
           <Edit2Icon className="sb-h-5 sb-w-5" />
@@ -72,7 +73,7 @@ const EditButton = ({ id }: { id: string }) => {
         align="start"
         sideOffset={16}
         alignOffset={-8}
-        className="sb-p-0"
+        className="sb-p-0 sb-relative"
         collisionPadding={16}
       >
         <EditPopoverInner id={id} />
@@ -108,7 +109,9 @@ const EditPopoverInner = (props: EditPopoverInnerProps) => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="content">
-        <ContainerItemForm item={item} />
+        <ScrollArea>
+          <ContainerItemForm item={item} />
+        </ScrollArea>
       </TabsContent>
       <TabsContent value="design">
         <ItemDesignForm item={item} />

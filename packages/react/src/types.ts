@@ -14,7 +14,8 @@ export type InputType =
   | "richText"
   | "file"
   | "color"
-  | "date";
+  | "date"
+  | "grouped";
 
 export type ComponentInput<T extends InputType> = {
   type: T;
@@ -22,9 +23,15 @@ export type ComponentInput<T extends InputType> = {
   friendlyName?: string;
   helperText?: string;
   defaultValue?: any;
+  multiple?: boolean;
 } & (T extends "string"
   ? { enum?: string[] | { label: string; value: any } }
-  : {});
+  : {}) &
+  (T extends "grouped"
+    ? {
+        inputs: ComponentInput<any>[];
+      }
+    : {});
 
 export type Component = {
   component: (props?: any) => JSX.Element;
@@ -32,7 +39,7 @@ export type Component = {
   friendlyName?: string;
   icon?: any;
   description?: string;
-  inputs?: ComponentInput<any>[];
+  inputs?: ComponentInput<InputType>[];
   defaults?: Record<string, unknown>;
   defaultStyles?: ContentItem["styles"];
 };

@@ -132,6 +132,12 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
           return acc;
         }
 
+        if (["padding", "margin"].includes(key)) {
+          if (value === "0px" && desktopValue === "0px") {
+            return acc;
+          }
+        }
+
         return {
           ...acc,
           ...(value && { [key]: value }),
@@ -143,8 +149,8 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
     patchItem(item.id, {
       styles: {
         ...(container === false && { container }),
-        desktop: desktopPatch,
-        mobile: mobilePatch,
+        ...(Object.keys(desktopPatch).length && { desktop: desktopPatch }),
+        ...(Object.keys(mobilePatch).length && { mobile: mobilePatch }),
       },
     });
   };

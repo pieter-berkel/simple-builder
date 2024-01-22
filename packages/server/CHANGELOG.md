@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.10
+
+### Patch Changes
+
+- Grouped and multiple inputs. Scrollable edit form.
+
 ## 1.0.9
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.10
+
+### Patch Changes
+
+- Grouped and multiple inputs. Scrollable edit form.
+- Updated dependencies
+  - @simple-builder/server@1.0.10
+
 ## 1.0.9
 
 ### Patch Changes

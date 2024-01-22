@@ -60,21 +60,55 @@ builder.register(
         friendlyName: "Titel",
         defaultValue: "Hello World",
       },
+      {
+        type: "grouped",
+        name: "link",
+        multiple: true,
+        friendlyName: "Knop met link",
+        defaultValue: [
+          {
+            label: "Lees meer",
+            href: "/",
+          },
+        ],
+        inputs: [
+          {
+            type: "string",
+            name: "label",
+            friendlyName: "Label",
+          },
+          {
+            type: "string",
+            name: "href",
+            friendlyName: "Link",
+          },
+          {
+            type: "color",
+            name: "bg",
+            friendlyName: "Achtergrond",
+          },
+          {
+            type: "boolean",
+            name: "desc",
+            friendlyName: "Ja of Nee",
+          },
+        ],
+      },
     ],
     defaultStyles: {
       desktop: {
         color: "#ffffff",
         background: "#cecece",
-        margin: "0 16px",
-        padding: "0 24px",
+        // margin: "0 32px",
+        // padding: "0 24px",
         "border-radius": "25px",
         overflow: "hidden",
       },
-      mobile: {
-        "border-radius": "0px",
-        padding: "0px",
-        margin: "0px",
-      },
+      // mobile: {
+      //   "border-radius": "0px",
+      //   padding: "0px",
+      //   margin: "0px",
+      // },
     },
   },
 );
