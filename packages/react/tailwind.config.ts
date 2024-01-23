@@ -7,6 +7,13 @@ const config: Config = {
   darkMode: ["class"],
   prefix: "sb-",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
         border: "hsl(var(--sb-border))",

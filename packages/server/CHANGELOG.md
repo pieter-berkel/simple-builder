@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.12
+
+### Patch Changes
+
+- set max container size to 1400px
+
 ## 1.0.11
 
 ### Patch Changes
