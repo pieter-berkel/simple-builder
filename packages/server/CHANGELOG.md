@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.13
+
+### Patch Changes
+
+- remove padding override for container
+
 ## 1.0.12
 
 ### Patch Changes
