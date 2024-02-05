@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.15
+
+### Patch Changes
+
+- fix for background
+- Updated dependencies
+  - @simple-builder/server@1.0.15
+
 ## 1.0.14
 
 ### Patch Changes

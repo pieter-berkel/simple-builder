@@ -14,12 +14,6 @@ type DesignWrapperProps = {
 export const DesignWrapper = (props: DesignWrapperProps) => {
   const { children, className } = props;
 
-  const desktopStyles = props.styles?.desktop ?? {};
-  delete desktopStyles.background;
-
-  const mobileStyles = props.styles?.mobile ?? {};
-  delete mobileStyles.background;
-
   const { background } = props.styles?.desktop ?? {};
 
   const matches =
@@ -28,6 +22,9 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
       : undefined;
 
   const src = matches ? matches[1] : undefined;
+
+  const desktopStyles = props.styles?.desktop ?? {};
+  const mobileStyles = props.styles?.mobile ?? {};
 
   const container = props.styles?.container ?? true;
 
@@ -53,6 +50,7 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
         {`
         #${id} {
           ${Object.entries(desktopStyles)
+            .filter(([key]) => !(key === "background" && src))
             .map(([key, value]) => `${key}: ${value};`)
             .join(" ")}
         }
@@ -60,6 +58,7 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
         @media (max-width: 1024px) {
           #${id} {
             ${Object.entries(mobileStyles)
+              .filter(([key]) => !(key === "background" && src))
               .map(([key, value]) => `${key}: ${value}; `)
               .join(" ")}
           }

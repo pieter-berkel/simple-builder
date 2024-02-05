@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.15
+
+### Patch Changes
+
+- fix for background
+
 ## 1.0.14
 
 ### Patch Changes
