@@ -14,9 +14,13 @@ type DesignWrapperProps = {
 export const DesignWrapper = (props: DesignWrapperProps) => {
   const { children, className } = props;
 
-  const styles = props.styles?.desktop ?? {};
+  const desktopStyles = props.styles?.desktop ?? {};
+  delete desktopStyles.background;
 
-  const { background } = styles;
+  const mobileStyles = props.styles?.mobile ?? {};
+  delete mobileStyles.background;
+
+  const { background } = props.styles?.desktop ?? {};
 
   const matches =
     typeof background === "string"
@@ -48,14 +52,14 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
       <style>
         {`
         #${id} {
-          ${Object.entries(props.styles?.desktop ?? {})
+          ${Object.entries(desktopStyles)
             .map(([key, value]) => `${key}: ${value};`)
             .join(" ")}
         }
 
         @media (max-width: 1024px) {
           #${id} {
-            ${Object.entries(props.styles?.mobile ?? {})
+            ${Object.entries(mobileStyles)
               .map(([key, value]) => `${key}: ${value}; `)
               .join(" ")}
           }
