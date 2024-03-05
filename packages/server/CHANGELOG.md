@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.16
+
+### Patch Changes
+
+- added select input
+
 ## 1.0.15
 
 ### Patch Changes

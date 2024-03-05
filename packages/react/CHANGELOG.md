@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.16
+
+### Patch Changes
+
+- added select input
+- Updated dependencies
+  - @simple-builder/server@1.0.16
+
 ## 1.0.15
 
 ### Patch Changes

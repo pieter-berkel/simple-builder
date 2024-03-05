@@ -28,6 +28,13 @@ import {
 import { Input } from "./ui/input";
 import { MediaInput } from "./ui/media-input";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { Switch } from "./ui/switch";
 import { Textarea } from "./ui/textarea";
 
@@ -178,7 +185,7 @@ const RenderFormField = (props: RenderFormFieldProps) => {
             <FormItem>
               <FormLabel>{input.friendlyName || input.name}</FormLabel>
               <FormControl>
-                <RenderInput type={type} field={field} />
+                <RenderInput type={type} field={field} options={input?.enum} />
               </FormControl>
               {input.helperText && (
                 <FormDescription>{input.helperText}</FormDescription>
@@ -238,15 +245,33 @@ const RenderFormField = (props: RenderFormFieldProps) => {
 
 type RenderInputProps = {
   type: InputType;
+  options?: string[];
   field: ControllerRenderProps<Record<string, any>, string>;
 };
 
 const RenderInput = (props: RenderInputProps) => {
-  const { type, field } = props;
+  const { type, options, field } = props;
 
   switch (type) {
     case "string":
-      return <Input {...field} />;
+      if (!options) return <Input {...field} />;
+
+      console.log("options", options);
+
+      return (
+        <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {options.map((option) => (
+              <SelectItem key={option} value={option}>
+                {option}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      );
     case "longText":
     case "richText":
       return <Textarea {...field} />;
@@ -267,7 +292,8 @@ const RenderInput = (props: RenderInputProps) => {
               )}
             >
               <CalendarIcon className="sb-mr-2 sb-h-4 sb-w-4" />
-              {field.value ? (
+              {/* Array.isArray is a bug fix */}
+              {field.value && !Array.isArray(field.value) ? (
                 format(field.value, "PPP")
               ) : (
                 <span>Pick a date</span>

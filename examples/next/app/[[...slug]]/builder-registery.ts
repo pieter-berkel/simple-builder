@@ -8,6 +8,12 @@ builder.register(
     friendlyName: "Demo",
     inputs: [
       {
+        type: "string",
+        name: "select",
+        friendlyName: "Select",
+        enum: ["Option 1", "Option 2", "Option 3"],
+      },
+      {
         type: "date",
         name: "date",
         friendlyName: "Datum",
