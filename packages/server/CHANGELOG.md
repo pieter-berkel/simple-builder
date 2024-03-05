@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.17
+
+### Patch Changes
+
+- removed console logs
+
 ## 1.0.16
 
 ### Patch Changes

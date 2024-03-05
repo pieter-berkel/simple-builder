@@ -256,8 +256,6 @@ const RenderInput = (props: RenderInputProps) => {
     case "string":
       if (!options) return <Input {...field} />;
 
-      console.log("options", options);
-
       return (
         <Select onValueChange={field.onChange} defaultValue={field.value}>
           <SelectTrigger>

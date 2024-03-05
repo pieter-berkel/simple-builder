@@ -1,5 +1,13 @@
 # @simple-builder/react
 
+## 1.0.17
+
+### Patch Changes
+
+- removed console logs
+- Updated dependencies
+  - @simple-builder/server@1.0.17
+
 ## 1.0.16
 
 ### Patch Changes
