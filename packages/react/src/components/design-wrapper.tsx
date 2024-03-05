@@ -41,7 +41,7 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
         />
       )}
       {container ? (
-        <div className="sb-container sb-mx-auto">{children}</div>
+        <div className="container sb-mx-auto">{children}</div>
       ) : (
         children
       )}

@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.18
+
+### Patch Changes
+
+- dont use simple builder container class
+
 ## 1.0.17
 
 ### Patch Changes
