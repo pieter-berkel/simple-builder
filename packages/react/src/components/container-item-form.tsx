@@ -316,6 +316,7 @@ const RenderInput = (props: RenderInputProps) => {
           className="sb-grid sb-grid-cols-2 sb-gap-1"
           itemClassName="sb-aspect-video sb-h-auto sb-w-full"
           multiple={false}
+          files={field.value ? [field.value] : []}
           onFilesChange={(files) => field.onChange(files[0])}
           onError={(e) =>
             console.error(
