@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.20
+
+### Patch Changes
+
+- fix issue with next image
+
 ## 1.0.19
 
 ### Patch Changes

@@ -25,7 +25,7 @@ type ImageProps = React.ComponentProps<"img"> & {
 
 export const Image = (props: ImageProps) => {
   if (typeof NextImage !== "undefined") {
-    return <NextImage.default {...props} />;
+    return <NextImage {...props} />;
   }
 
   return <img {...props} />;
