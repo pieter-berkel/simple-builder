@@ -7,12 +7,13 @@ import { cn } from "~/lib/utils";
 
 type DesignWrapperProps = {
   children?: React.ReactNode;
+  building?: boolean;
   className?: string;
   styles?: ContentItem["styles"];
 };
 
 export const DesignWrapper = (props: DesignWrapperProps) => {
-  const { children, className } = props;
+  const { children, className, building = false } = props;
 
   const { background } = props.styles?.desktop ?? {};
 
@@ -27,11 +28,28 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
   const mobileStyles = props.styles?.mobile ?? {};
 
   const container = props.styles?.container ?? true;
+  const hidden = props.styles?.hidden ?? "never";
 
   const id = React.useId().replace(/[^a-zA-Z0-9]/g, "");
 
+  let hiddenClass = "";
+  switch (hidden) {
+    case "always":
+      hiddenClass = building ? "sb-opacity-30" : "sb-hidden";
+      break;
+    case "mobile":
+      hiddenClass = building ? "max-md:sb-opacity-30" : "max-md:sb-hidden";
+      break;
+    case "desktop":
+      hiddenClass = building ? "md:sb-opacity-30" : "md:sb-hidden";
+      break;
+    case "never":
+      hiddenClass = "";
+      break;
+  }
+
   return (
-    <div id={id} className={cn("sb-relative", className)}>
+    <div id={id} className={cn("sb-relative", className, hiddenClass)}>
       {src && (
         <Image
           src={src}

@@ -18,6 +18,13 @@ import { builder } from "..";
 import { useBuilder } from "./context/builder-context";
 import { BackgroundPicker } from "./ui/background-picker";
 import { ColorPicker } from "./ui/color-picker";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { SpacingInput } from "./ui/spacing-input";
 import { Switch } from "./ui/switch";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
@@ -30,6 +37,7 @@ type ItemDesignFormProps = {
 
 const designSchema = z.object({
   container: z.coerce.boolean(),
+  hidden: z.enum(["always", "mobile", "desktop", "never"]),
   desktop: z.object({
     background: z.string(),
     color: z.string(),
@@ -96,6 +104,7 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
     resolver: zodResolver(designSchema),
     values: {
       container: item.styles?.container ?? true,
+      hidden: item.styles?.hidden ?? "never",
       desktop: getDefaultDeviceValues("desktop"),
       mobile: getDefaultDeviceValues("mobile"),
     },
@@ -104,7 +113,7 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
   const { patchItem } = useBuilder();
 
   const onSubmit = (values: z.infer<typeof designSchema>) => {
-    const { container, desktop, mobile } = values;
+    const { container, hidden, desktop, mobile } = values;
     const dirtyFields = form.formState.dirtyFields;
 
     type Entries<T> = {
@@ -149,6 +158,7 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
     patchItem(item.id, {
       styles: {
         ...(container === false && { container }),
+        ...(hidden !== "never" && { hidden }),
         ...(Object.keys(desktopPatch).length && { desktop: desktopPatch }),
         ...(Object.keys(mobilePatch).length && { mobile: mobilePatch }),
       },
@@ -211,6 +221,30 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
                       color={field.value}
                       onColorChange={field.onChange}
                     />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <hr />
+            <FormField
+              control={form.control}
+              name="hidden"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Verbergen</FormLabel>
+                  <FormControl>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="never">Nooit</SelectItem>
+                        <SelectItem value="desktop">Op desktop</SelectItem>
+                        <SelectItem value="mobile">Op mobiel</SelectItem>
+                        <SelectItem value="always">Altijd</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

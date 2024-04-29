@@ -46,7 +46,7 @@ const BuildContainerInner = (props: BuildContainerProps) => {
       {items.map((item, i) => (
         <React.Fragment key={item.id}>
           <div className="sb-relative sb-container-item">
-            <DesignWrapper styles={item.styles}>
+            <DesignWrapper building styles={item.styles}>
               {builder.bindComponent(item, true)}
             </DesignWrapper>
             <ContainerItemToolbar

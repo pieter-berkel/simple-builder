@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.21
+
+### Patch Changes
+
+- Added option to hide component
+
 ## 1.0.20
 
 ### Patch Changes

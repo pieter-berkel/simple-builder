@@ -1,5 +1,13 @@
 # next-example
 
+## 0.1.22
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/server@1.0.21
+  - @simple-builder/react@1.0.21
+
 ## 0.1.21
 
 ### Patch Changes

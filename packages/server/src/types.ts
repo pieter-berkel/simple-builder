@@ -14,6 +14,7 @@ export type ContentItem = {
   props?: Record<string, unknown>;
   styles?: {
     container?: boolean;
+    hidden?: "always" | "desktop" | "mobile" | "never";
     desktop?: Record<string, unknown>;
     mobile?: Record<string, unknown>;
   };
