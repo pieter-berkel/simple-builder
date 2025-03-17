@@ -5,8 +5,8 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "@/*": ["./src/*"],
     },
-    "noEmit": true
-  }
+    "noEmit": true,
+  },
 }

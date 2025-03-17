@@ -1,9 +1,9 @@
 import * as React from "react";
 import { ContentItem } from "@simple-builder/server";
 
-import { Image } from "~/components/image";
+import { Image } from "@/components/image";
 
-import { cn } from "~/lib/utils";
+import { cn } from "@/lib/utils";
 
 type DesignWrapperProps = {
   children?: React.ReactNode;

@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import { ContentItem } from "@simple-builder/server";
 
-import type { Component } from "~/types";
+import type { Component } from "@/types";
 
 export const builder = (() => {
   const components: Component[] = [];

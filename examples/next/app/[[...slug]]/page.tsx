@@ -1,7 +1,7 @@
 import * as React from "react";
 import { notFound } from "next/navigation";
 
-import { db } from "~/server/db";
+import { db } from "@/server/db";
 import { BuilderContentRenderer } from "./builder-content-renderer";
 
 export async function generateStaticParams() {

@@ -1,8 +1,8 @@
 import * as React from "react";
 import type { BuilderContent } from "@simple-builder/server";
 
-import { builder } from "~/lib/builder";
-import { insertAt } from "~/lib/utils";
+import { builder } from "@/lib/builder";
+import { insertAt } from "@/lib/utils";
 
 type BuilderContextType = {
   url: string;

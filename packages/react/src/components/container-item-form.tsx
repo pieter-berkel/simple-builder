@@ -9,8 +9,8 @@ import {
   UseFormReturn,
 } from "react-hook-form";
 
-import { cn } from "~/lib/utils";
-import { ComponentInput, InputType } from "~/types";
+import { cn } from "@/lib/utils";
+import { ComponentInput, InputType } from "@/types";
 import { builder } from "..";
 import { useBuilder } from "./context/builder-context";
 import { Button } from "./ui/button";

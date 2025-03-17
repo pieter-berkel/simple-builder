@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-import type { Provider, UpdatePageParams } from "~/providers/types";
+import type { Provider, UpdatePageParams } from "@/providers/types";
 
 export interface Config {
   provider: Provider;

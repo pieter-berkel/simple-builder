@@ -2,7 +2,7 @@ import * as React from "react";
 import { BuilderContent } from "@simple-builder/server";
 import { ImageIcon, PlusIcon } from "lucide-react";
 
-import { builder } from "~/lib/builder";
+import { builder } from "@/lib/builder";
 import { ContainerItemToolbar } from "./container-item-toolbar";
 import { useBuilder } from "./context/builder-context";
 import { DesignWrapper } from "./design-wrapper";

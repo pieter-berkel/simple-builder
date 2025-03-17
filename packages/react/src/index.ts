@@ -1,14 +1,14 @@
 import { lazy } from "react";
 
-import "~/global.css";
+import "@/global.css";
 
-export { builder } from "~/lib/builder";
+export { builder } from "@/lib/builder";
 
-export { StaticContent } from "~/components/static-content";
+export { StaticContent } from "@/components/static-content";
 
 const BuilderContent = lazy(() => import("./components/builder-content"));
 export { BuilderContent };
 
-export { BuildContainer } from "~/components/build-container";
+export { BuildContainer } from "@/components/build-container";
 
-export type { BuildContainerProps } from "~/types";
+export type { BuildContainerProps } from "@/types";

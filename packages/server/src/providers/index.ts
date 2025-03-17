@@ -1,1 +1,1 @@
-export type { Provider } from "~/providers/types";
+export type { Provider } from "@/providers/types";

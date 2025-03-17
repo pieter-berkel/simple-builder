@@ -1,4 +1,4 @@
-import type { ContentItem, MaybePromise } from "~/types";
+import type { ContentItem, MaybePromise } from "@/types";
 
 export type UpdatePageParams = ({ id: string } | { slug: string }) & {
   content?: ContentItem[];

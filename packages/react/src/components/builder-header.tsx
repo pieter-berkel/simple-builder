@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { useBuilder } from "~/components/context/builder-context";
-import { Button } from "~/components/ui/button";
+import { useBuilder } from "@/components/context/builder-context";
+import { Button } from "@/components/ui/button";
 
 export const BuilderHeader = () => {
   const { save } = useBuilder();

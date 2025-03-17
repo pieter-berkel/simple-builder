@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ArrowDown, ArrowUp, Edit2Icon, Trash2Icon } from "lucide-react";
 
-import { useBuilder } from "~/components/context/builder-context";
+import { useBuilder } from "@/components/context/builder-context";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,13 +10,13 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTrigger,
-} from "~/components/ui/alert-dialog";
-import { Button, buttonVariants } from "~/components/ui/button";
+} from "@/components/ui/alert-dialog";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "~/components/ui/popover";
+} from "@/components/ui/popover";
 
 import { ContainerItemForm } from "./container-item-form";
 import { ItemDesignForm } from "./item-design-form";

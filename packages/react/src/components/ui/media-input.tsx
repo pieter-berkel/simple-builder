@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Loader2Icon, PlusIcon, Trash2Icon } from "lucide-react";
 
-import { cn } from "~/lib/utils";
+import { cn } from "@/lib/utils";
 import { Image } from "../image";
 
 type MediaInputProps = {

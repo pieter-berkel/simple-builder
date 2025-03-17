@@ -2,8 +2,8 @@ import type { Provider } from "@simple-builder/server/providers";
 import { eq } from "drizzle-orm";
 import { UTApi } from "uploadthing/server";
 
-import { db } from "~/server/db";
-import * as s from "~/server/db/schema";
+import { db } from "@/server/db";
+import * as s from "@/server/db/schema";
 
 export const provider: Provider = {
   async updatePage(params) {

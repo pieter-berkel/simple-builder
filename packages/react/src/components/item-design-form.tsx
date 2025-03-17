@@ -12,7 +12,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "~/components/ui/form";
+} from "@/components/ui/form";
 
 import { builder } from "..";
 import { useBuilder } from "./context/builder-context";

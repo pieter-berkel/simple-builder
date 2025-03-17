@@ -4,7 +4,7 @@ import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { VariantProps } from "tailwind-variants";
 
-import { cn, tv } from "~/lib/utils";
+import { cn, tv } from "@/lib/utils";
 
 const Tabs = TabsPrimitive.Root;
 
