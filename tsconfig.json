@@ -14,8 +14,8 @@
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
   },
   "include": ["**/*", ".eslintrc.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }

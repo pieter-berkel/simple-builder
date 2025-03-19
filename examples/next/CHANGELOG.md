@@ -1,5 +1,23 @@
 # next-example
 
+## 0.2.0
+
+### Minor Changes
+
+- Added a rich text editor
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/react@1.2.0
+
+## 0.1.23
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/react@1.1.0
+
 ## 0.1.22
 
 ### Patch Changes

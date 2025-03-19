@@ -1,5 +1,17 @@
 # @simple-builder/react
 
+## 1.2.0
+
+### Minor Changes
+
+- Added a rich text editor
+
+## 1.1.0
+
+### Minor Changes
+
+- Added a rich text editor
+
 ## 1.0.21
 
 ### Patch Changes

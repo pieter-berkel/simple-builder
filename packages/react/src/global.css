@@ -194,3 +194,12 @@
 .sb-container-item:has(.sb-container-item:hover) > .sb-item-toolbar {
   opacity: 0;
 }
+
+.sb-editflow .ProseMirror {
+  @apply sb-flex sb-max-w-full sb-cursor-text sb-flex-col;
+  @apply sb-z-0 sb-outline-0;
+}
+
+.sb-editflow .ProseMirror > div.editor {
+  @apply sb-block sb-flex-1 sb-whitespace-pre-wrap;
+}

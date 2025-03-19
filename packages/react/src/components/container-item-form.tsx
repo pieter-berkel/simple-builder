@@ -1,4 +1,7 @@
 import * as React from "react";
+import { RichTextEditor } from "@/features/rich-text-editor";
+import { cn } from "@/lib/utils";
+import { ComponentInput, InputType } from "@/types";
 import { ContentItem } from "@simple-builder/server";
 import { format } from "date-fns";
 import { CalendarIcon, PlusCircleIcon, XIcon } from "lucide-react";
@@ -9,13 +12,18 @@ import {
   UseFormReturn,
 } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
-import { ComponentInput, InputType } from "@/types";
 import { builder } from "..";
 import { useBuilder } from "./context/builder-context";
 import { Button } from "./ui/button";
 import { Calendar } from "./ui/calendar";
 import { ColorPicker } from "./ui/color-picker";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
 import {
   Form,
   FormControl,
@@ -172,7 +180,6 @@ const RenderFormField = (props: RenderFormFieldProps) => {
     case "string":
     case "number":
     case "longText":
-    case "richText":
     case "color":
     case "date":
     case "file":
@@ -194,6 +201,46 @@ const RenderFormField = (props: RenderFormFieldProps) => {
             </FormItem>
           )}
         />
+      );
+    case "richText":
+      return (
+        <Dialog>
+          <div className="sb-space-y-2">
+            <FormLabel>{input.friendlyName || input.name}</FormLabel>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="sb-w-full">
+                {input.friendlyName || input.name} bewerken
+              </Button>
+            </DialogTrigger>
+          </div>
+          <DialogContent className="sb-max-w-3xl sb-p-0">
+            <div className="sb-flex sb-h-full sb-max-h-svh sb-w-full sb-flex-col sm:sb-max-h-[90svh]">
+              <DialogHeader className="sb-flex-none sb-border-b sb-p-6">
+                <DialogTitle>
+                  {input.friendlyName || input.name} editor
+                </DialogTitle>
+              </DialogHeader>
+              <div className="sb-flex-1 sb-overflow-y-auto">
+                <FormField
+                  key={input.name}
+                  control={form.control}
+                  name={input.name}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <RenderInput type={type} field={field} />
+                      </FormControl>
+                      {input.helperText && (
+                        <FormDescription>{input.helperText}</FormDescription>
+                      )}
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       );
     case "boolean":
       return (
@@ -271,8 +318,9 @@ const RenderInput = (props: RenderInputProps) => {
         </Select>
       );
     case "longText":
-    case "richText":
       return <Textarea {...field} />;
+    case "richText":
+      return <RichTextEditor {...field} />;
     case "number":
       return <Input type="number" {...field} />;
     case "color":

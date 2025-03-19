@@ -1,7 +1,7 @@
 import * as React from "react";
+import { builder } from "@/lib/builder";
 import { BuilderContent } from "@simple-builder/server";
 
-import { builder } from "@/lib/builder";
 import { DesignWrapper } from "./design-wrapper";
 
 const BuildContainerInner = React.lazy(
