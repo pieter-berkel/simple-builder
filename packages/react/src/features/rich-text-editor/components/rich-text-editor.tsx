@@ -45,7 +45,7 @@ export const RichTextEditor = ({
       <EditorContent
         editor={editor}
         className={cn(
-          "sb-editflow sb-prose sb-flex sb-flex-1",
+          "sb-editflow prose sb-flex sb-flex-1",
           editorContentClassName,
         )}
       />

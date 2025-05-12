@@ -1,5 +1,11 @@
 # @simple-builder/server
 
+## 1.0.22
+
+### Patch Changes
+
+- update prose classname
+
 ## 1.0.21
 
 ### Patch Changes

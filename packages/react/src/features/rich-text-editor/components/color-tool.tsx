@@ -24,7 +24,9 @@ const PALETTES: ColorPalette[] = [
     inverse: "hsl(var(--background))",
     colors: [
       { cssVar: "hsl(var(--foreground))" },
+      { cssVar: "hsl(var(--primary-foreground))" },
       { cssVar: "hsl(var(--secondary-foreground))" },
+      { cssVar: "hsl(var(--tertiary-foreground))" },
       { cssVar: "hsl(var(--muted-foreground))" },
       { cssVar: "hsl(var(--accent-foreground))" },
       { cssVar: "hsl(var(--destructive-foreground))" },
@@ -35,7 +37,9 @@ const PALETTES: ColorPalette[] = [
     inverse: "hsl(var(--foreground))",
     colors: [
       { cssVar: "hsl(var(--background))" },
+      { cssVar: "hsl(var(--primary))" },
       { cssVar: "hsl(var(--secondary))" },
+      { cssVar: "hsl(var(--tertiary))" },
       { cssVar: "hsl(var(--muted))" },
       { cssVar: "hsl(var(--accent))" },
       { cssVar: "hsl(var(--destructive))" },

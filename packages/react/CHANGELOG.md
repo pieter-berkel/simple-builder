@@ -1,5 +1,31 @@
 # @simple-builder/react
 
+## 1.2.4
+
+### Patch Changes
+
+- build
+
+## 1.2.3
+
+### Patch Changes
+
+- add colors
+
+## 1.2.2
+
+### Patch Changes
+
+- build
+
+## 1.2.1
+
+### Patch Changes
+
+- update prose classname
+- Updated dependencies
+  - @simple-builder/server@1.0.22
+
 ## 1.2.0
 
 ### Minor Changes
