@@ -1,5 +1,16 @@
 # @simple-builder/react
 
+## 1.3.0
+
+### Minor Changes
+
+- Migrate to tailwindcss v4
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/server@1.3.0
+
 ## 1.2.10
 
 ### Patch Changes

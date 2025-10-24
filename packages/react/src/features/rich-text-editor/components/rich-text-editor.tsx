@@ -28,7 +28,7 @@ export const RichTextEditor = ({
   const editor = useRichTextEditor({
     value,
     onUpdate: onChange,
-    editorClassName: cn("sb-flex-1 sb-px-3 sb-py-1", editorClassName),
+    editorClassName: cn("sb:flex-1 sb:px-3 sb:py-1", editorClassName),
     ...props,
   });
 
@@ -39,7 +39,7 @@ export const RichTextEditor = ({
   return (
     <div
       className={cn(
-        "sb-flex sb-h-auto sb-min-h-72 sb-w-full sb-flex-col sb-rounded-md sb-border sb-border-input sb-shadow-sm focus-within:sb-border-primary",
+        "sb:flex sb:h-auto sb:min-h-72 sb:w-full sb:flex-col sb:rounded-md sb:border sb:border-input sb:shadow-sm sb:focus-within:border-primary",
         className,
       )}
     >
@@ -47,7 +47,7 @@ export const RichTextEditor = ({
       <EditorContent
         editor={editor}
         className={cn(
-          "sb-editflow prose sb-flex sb-flex-1",
+          "sb-editflow prose sb:flex sb:flex-1",
           editorContentClassName,
         )}
       />

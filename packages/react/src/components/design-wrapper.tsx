@@ -35,13 +35,13 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
   let hiddenClass = "";
   switch (hidden) {
     case "always":
-      hiddenClass = building ? "sb-opacity-30" : "sb-hidden";
+      hiddenClass = building ? "sb:opacity-30" : "sb:hidden";
       break;
     case "mobile":
-      hiddenClass = building ? "max-md:sb-opacity-30" : "max-md:sb-hidden";
+      hiddenClass = building ? "sb:max-md:opacity-30" : "sb:max-md:hidden";
       break;
     case "desktop":
-      hiddenClass = building ? "md:sb-opacity-30" : "md:sb-hidden";
+      hiddenClass = building ? "sb:md:opacity-30" : "sb:md:hidden";
       break;
     case "never":
       hiddenClass = "";
@@ -49,17 +49,17 @@ export const DesignWrapper = (props: DesignWrapperProps) => {
   }
 
   return (
-    <div id={id} className={cn("sb-relative", className, hiddenClass)}>
+    <div id={id} className={cn("sb:relative", className, hiddenClass)}>
       {src && (
         <Image
           src={src}
           alt=""
           fill
-          className="sb-object-cover sb-absolute sb-inset-0 sb-pointer-events-none sb--z-[1]"
+          className="sb:object-cover sb:absolute sb:inset-0 sb:pointer-events-none sb:-z-1"
         />
       )}
       {container ? (
-        <div className="container sb-mx-auto">{children}</div>
+        <div className="container sb:mx-auto">{children}</div>
       ) : (
         children
       )}

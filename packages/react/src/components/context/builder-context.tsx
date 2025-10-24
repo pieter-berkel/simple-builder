@@ -164,13 +164,20 @@ export const BuilderProvider = (props: BuilderProviderProps) => {
   const save = React.useCallback(async () => {
     const slug = window.location.pathname;
 
-    await fetch(`${url}/page/update`, {
-      method: "POST",
-      body: JSON.stringify({
-        slug,
-        content,
-      }),
-    });
+    try {
+      await fetch(`${url}/page/update`, {
+        method: "POST",
+        body: JSON.stringify({
+          slug,
+          content,
+        }),
+      });
+
+      alert("Pagina opgeslagen!");
+    } catch (e) {
+      console.error("[simple-builder]: Failed to save content", e);
+      alert("Er is iets fout gegaan. Bekijk de console voor meer info.");
+    }
   }, [content]);
 
   return (

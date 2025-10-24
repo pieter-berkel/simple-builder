@@ -21,31 +21,31 @@ const formatActions: {
   {
     label: "Normal Text",
     element: "span",
-    className: "sb-grow",
+    className: "sb:grow",
   },
   {
     label: "Heading 1",
     element: "h1",
     level: 1,
-    className: "sb-m-0 sb-grow sb-text-3xl sb-font-extrabold",
+    className: "sb:m-0 sb:grow sb:text-3xl sb:font-extrabold",
   },
   {
     label: "Heading 2",
     element: "h2",
     level: 2,
-    className: "sb-m-0 sb-grow sb-text-xl sb-font-bold",
+    className: "sb:m-0 sb:grow sb:text-xl sb:font-bold",
   },
   {
     label: "Heading 3",
     element: "h3",
     level: 3,
-    className: "sb-m-0 sb-grow sb-text-lg sb-font-semibold",
+    className: "sb:m-0 sb:grow sb:text-lg sb:font-semibold",
   },
   {
     label: "Heading 4",
     element: "h4",
     level: 4,
-    className: "sb-m-0 sb-grow sb-text-base sb-font-semibold",
+    className: "sb:m-0 sb:grow sb:text-base sb:font-semibold",
   },
 ];
 
@@ -71,11 +71,11 @@ export const ElementTool = ({ editor }: Props) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <ToolbarButton
-          className="sb-w-12 data-[state=open]:sb-bg-accent"
+          className="sb:w-12 sb:data-[state=open]:bg-accent"
           pressed={isActive}
         >
-          <LuHeading className="sb-size-5" />
-          <LuChevronDown className="sb-size-5" />
+          <LuHeading className="sb:size-5" />
+          <LuChevronDown className="sb:size-5" />
         </ToolbarButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
@@ -83,7 +83,7 @@ export const ElementTool = ({ editor }: Props) => {
           <DropdownMenuItem
             key={action.label}
             className={cn({
-              "sb-bg-accent": action.level
+              "sb:bg-accent": action.level
                 ? editor.isActive("heading", { level: action.level })
                 : editor.isActive("paragraph"),
             })}

@@ -1,106 +1,154 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss" prefix(sb);
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-Thin.ttf") format("truetype");
-  font-weight: 100;
+@custom-variant dark (&:is(.dark *));
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
 }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-ThinItalic.ttf") format("truetype");
-  font-weight: 100;
-  font-style: italic;
+@theme {
+  --color-border: hsl(var(--sb-border));
+  --color-input: hsl(var(--sb-input));
+  --color-ring: hsl(var(--sb-ring));
+  --color-background: hsl(var(--sb-background));
+  --color-foreground: hsl(var(--sb-foreground));
+
+  --color-primary: hsl(var(--sb-primary));
+  --color-primary-foreground: hsl(var(--sb-primary-foreground));
+
+  --color-secondary: hsl(var(--sb-secondary));
+  --color-secondary-foreground: hsl(var(--sb-secondary-foreground));
+
+  --color-destructive: hsl(var(--sb-destructive));
+  --color-destructive-foreground: hsl(var(--sb-destructive-foreground));
+
+  --color-muted: hsl(var(--sb-muted));
+  --color-muted-foreground: hsl(var(--sb-muted-foreground));
+
+  --color-accent: hsl(var(--sb-accent));
+  --color-accent-foreground: hsl(var(--sb-accent-foreground));
+
+  --color-popover: hsl(var(--sb-popover));
+  --color-popover-foreground: hsl(var(--sb-popover-foreground));
+
+  --color-card: hsl(var(--sb-card));
+  --color-card-foreground: hsl(var(--sb-card-foreground));
+
+  --radius-lg: var(--sb-radius);
+  --radius-md: calc(var(--sb-radius) - 2px);
+  --radius-sm: calc(var(--sb-radius) - 4px);
+
+  --font-roboto: Roboto, sans-serif;
 }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-Light.ttf") format("truetype");
-  font-weight: 300;
-}
+@layer utilities {
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-Thin.ttf") format("truetype");
+    font-weight: 100;
+  }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-LightItalic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
-}
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-ThinItalic.ttf") format("truetype");
+    font-weight: 100;
+    font-style: italic;
+  }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-Regular.ttf") format("truetype");
-  font-weight: 400;
-}
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-Italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-}
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-Light.ttf") format("truetype");
+    font-weight: 300;
+  }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-Medium.ttf") format("truetype");
-  font-weight: 500;
-}
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+  }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-MediumItalic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic;
-}
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+  }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-Bold.ttf") format("truetype");
-  font-weight: 700;
-}
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-Medium.ttf") format("truetype");
+    font-weight: 500;
+  }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-BoldItalic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic;
-}
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
+  }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-Black.ttf") format("truetype");
-  font-weight: 900;
-}
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-Bold.ttf") format("truetype");
+    font-weight: 700;
+  }
 
-@font-face {
-  font-family: "Roboto";
-  src:
-    local("Roboto"),
-    url("./assets/fonts/roboto/Roboto-BlackItalic.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-Black.ttf") format("truetype");
+    font-weight: 900;
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    src:
+      local("Roboto"),
+      url("./assets/fonts/roboto/Roboto-BlackItalic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
+  }
 }
 
 @layer base {
@@ -165,6 +213,14 @@
     --sb-input: 0 0% 14.9%;
     --sb-ring: 0 0% 83.1%;
   }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
 .add-content-divider-button:hover,
@@ -196,10 +252,10 @@
 }
 
 .sb-editflow .ProseMirror {
-  @apply sb-flex sb-max-w-full sb-cursor-text sb-flex-col;
-  @apply sb-z-0 sb-outline-0;
+  @apply sb:flex sb:max-w-full sb:cursor-text sb:flex-col;
+  @apply sb:z-0 sb:outline-0;
 }
 
 .sb-editflow .ProseMirror > div.editor {
-  @apply sb-block sb-flex-1 sb-whitespace-pre-wrap;
+  @apply sb:block sb:flex-1 sb:whitespace-pre-wrap;
 }

@@ -35,24 +35,24 @@ export const ContainerItemToolbar = (props: ContainerItemToolbarProps) => {
   const { bringUp, bringDown } = useBuilder();
 
   return (
-    <div className="sb-absolute sb-z-20 sb-top-1 sb-right-1 sb-rounded-md sb-shadow sb-flex sb-flex-col sb-gap-1 sb-p-1 sb-bg-card sb-text-card-foreground sb-item-toolbar sb-opacity-0 sb-transition-opacity">
-      <div className="sb-h-10 sb-p-1 sb-border sb-border-input sb-bg-background sb-rounded-md sb-text-sm sb-font-medium sb-flex sb-gap-1 sb-items-center sb-justify-start">
+    <div className="sb:absolute sb:z-20 sb:top-1 sb:right-1 sb:rounded-md sb:shadow sb:flex sb:flex-col sb:gap-1 sb:p-1 sb:bg-card sb:text-card-foreground sb-item-toolbar sb:opacity-0 sb:transition-opacity">
+      <div className="sb:h-10 sb:p-1 sb:border sb:border-input sb:bg-background sb:rounded-md sb:text-sm sb:font-medium sb:flex sb:gap-1 sb:items-center sb:justify-start">
         <EditButton id={contentId} />
         <Button
           variant="ghost"
-          className="sb-w-8 sb-h-8 sb-p-0"
+          className="sb:w-8 sb:h-8 sb:p-0"
           onClick={() => bringUp(contentId)}
           disabled={!canBringUp}
         >
-          <ArrowUp className="sb-h-5 sb-w-5" />
+          <ArrowUp className="sb:h-5 sb:w-5" />
         </Button>
         <Button
           variant="ghost"
-          className="sb-w-8 sb-h-8 sb-p-0"
+          className="sb:w-8 sb:h-8 sb:p-0"
           onClick={() => bringDown(contentId)}
           disabled={!canBringDown}
         >
-          <ArrowDown className="sb-h-5 sb-w-5" />
+          <ArrowDown className="sb:h-5 sb:w-5" />
         </Button>
         <DeleteButton contentId={contentId} />
       </div>
@@ -64,8 +64,8 @@ const EditButton = ({ id }: { id: string }) => {
   return (
     <Popover modal>
       <PopoverTrigger asChild>
-        <Button variant="ghost" className="sb-w-8 sb-h-8 sb-p-0">
-          <Edit2Icon className="sb-h-5 sb-w-5" />
+        <Button variant="ghost" className="sb:w-8 sb:h-8 sb:p-0">
+          <Edit2Icon className="sb:h-5 sb:w-5" />
         </Button>
       </PopoverTrigger>
       <PopoverContent
@@ -73,7 +73,7 @@ const EditButton = ({ id }: { id: string }) => {
         align="start"
         sideOffset={16}
         alignOffset={-8}
-        className="sb-p-0 sb-relative"
+        className="sb:p-0 sb:relative"
         collisionPadding={16}
       >
         <EditPopoverInner id={id} />
@@ -128,9 +128,9 @@ const DeleteButton = ({ contentId }: { contentId: string }) => {
       <AlertDialogTrigger asChild>
         <Button
           variant="ghost"
-          className="sb-w-8 sb-h-8 sb-p-0 sb-text-destructive"
+          className="sb:w-8 sb:h-8 sb:p-0 sb:text-destructive"
         >
-          <Trash2Icon className="sb-h-5 sb-w-5" />
+          <Trash2Icon className="sb:h-5 sb:w-5" />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

@@ -12,8 +12,8 @@ const tabsListVariants = tv({
   variants: {
     variant: {
       contained:
-        "sb-inline-flex sb-h-10 sb-items-center sb-justify-center sb-rounded-md sb-bg-muted sb-p-1 sb-text-muted-foreground",
-      text: "sb-flex sb-items-center sb-border-b sb-px-4 sb-space-x-6",
+        "sb:inline-flex sb:h-10 sb:items-center sb:justify-center sb:rounded-md sb:bg-muted sb:p-1 sb:text-muted-foreground",
+      text: "sb:flex sb:items-center sb:border-b sb:px-4 sb:gap-6",
     },
   },
   defaultVariants: {
@@ -40,8 +40,8 @@ const tabsTriggerVariants = tv({
   variants: {
     variant: {
       contained:
-        "sb-inline-flex sb-items-center sb-justify-center sb-whitespace-nowrap sb-rounded-sm sb-px-3 sb-py-1.5 sb-text-sm sb-font-medium sb-ring-offset-background sb-transition-all focus-visible:sb-outline-none focus-visible:sb-ring-2 focus-visible:sb-ring-ring focus-visible:sb-ring-offset-2 disabled:sb-pointer-events-none disabled:sb-opacity-50 data-[state=active]:sb-bg-background data-[state=active]:sb-text-foreground data-[state=active]:sb-shadow-sm",
-      text: "sb-inline-flex sb-font-roboto sb-items-center sb-justify-center sb-whitespace-nowrap sb-py-3 sb-text-sm sb-font-medium sb-transition-all focus-visible:sb-outline-none disabled:sb-pointer-events-none disabled:sb-opacity-50 data-[state=active]:sb-border-black sb-border-b-2 sb-border-transparent data-[state=active]:sb-text-foreground sb-text-muted-foreground",
+        "sb:inline-flex sb:items-center sb:justify-center sb:whitespace-nowrap sb:rounded-sm sb:px-3 sb:py-1.5 sb:text-sm sb:font-medium sb:ring-offset-background sb:transition-all sb:focus-visible:outline-hidden sb:focus-visible:ring-2 sb:focus-visible:ring-ring sb:focus-visible:ring-offset-2 sb:disabled:pointer-events-none sb:disabled:opacity-50 sb:data-[state=active]:bg-background sb:data-[state=active]:text-foreground sb:data-[state=active]:shadow-sm",
+      text: "sb:inline-flex sb:font-roboto sb:items-center sb:justify-center sb:whitespace-nowrap sb:py-3 sb:text-sm sb:font-medium sb:transition-all sb:focus-visible:outline-hidden sb:disabled:pointer-events-none sb:disabled:opacity-50 sb:data-[state=active]:border-black sb:border-b-2 sb:border-transparent sb:data-[state=active]:text-foreground sb:text-muted-foreground",
     },
   },
   defaultVariants: {
@@ -73,7 +73,7 @@ const TabsContent = React.forwardRef<
   <TabsPrimitive.Content
     ref={ref}
     className={cn(
-      "sb-ring-offset-background sb-font-roboto focus-visible:sb-outline-none focus-visible:sb-ring-2 focus-visible:sb-ring-ring focus-visible:sb-ring-offset-2",
+      "sb:ring-offset-background sb:font-roboto sb:focus-visible:outline-hidden sb:focus-visible:ring-2 sb:focus-visible:ring-ring sb:focus-visible:ring-offset-2",
       className,
     )}
     {...props}

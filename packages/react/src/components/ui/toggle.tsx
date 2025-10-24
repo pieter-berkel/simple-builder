@@ -5,18 +5,18 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const toggleVariants = cva(
-  "sb-inline-flex sb-items-center sb-justify-center sb-gap-2 sb-rounded-md sb-text-sm sb-font-medium sb-transition-colors hover:sb-bg-muted hover:sb-text-muted-foreground focus-visible:sb-outline-none focus-visible:sb-ring-1 focus-visible:sb-ring-ring disabled:sb-pointer-events-none disabled:sb-opacity-50 data-[state=on]:sb-bg-accent data-[state=on]:sb-text-accent-foreground [&_svg]:sb-pointer-events-none [&_svg]:sb-size-4 [&_svg]:sb-shrink-0",
+  "sb:inline-flex sb:items-center sb:justify-center sb:gap-2 sb:rounded-md sb:text-sm sb:font-medium sb:transition-colors sb:hover:bg-muted sb:hover:text-muted-foreground sb:focus-visible:outline-hidden sb:focus-visible:ring-1 sb:focus-visible:ring-ring sb:disabled:pointer-events-none sb:disabled:opacity-50 sb:data-[state=on]:bg-accent sb:data-[state=on]:text-accent-foreground sb:[&_svg]:pointer-events-none sb:[&_svg]:size-4 sb:[&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "sb-bg-transparent",
+        default: "sb:bg-transparent",
         outline:
-          "sb-border sb-border-input sb-bg-transparent sb-shadow-sm hover:sb-bg-accent hover:sb-text-accent-foreground",
+          "sb:border sb:border-input sb:bg-transparent sb:shadow-sm sb:hover:bg-accent sb:hover:text-accent-foreground",
       },
       size: {
-        default: "sb-h-9 sb-px-2 sb-min-w-9",
-        sm: "sb-h-8 sb-px-1.5 sb-min-w-8",
-        lg: "sb-h-10 sb-px-2.5 sb-min-w-10",
+        default: "sb:h-9 sb:px-2 sb:min-w-9",
+        sm: "sb:h-8 sb:px-1.5 sb:min-w-8",
+        lg: "sb:h-10 sb:px-2.5 sb:min-w-10",
       },
     },
     defaultVariants: {

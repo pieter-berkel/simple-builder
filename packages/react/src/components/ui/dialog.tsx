@@ -19,7 +19,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "sb-fixed sb-inset-0 sb-z-50 sb-bg-black/80 sb- data-[state=open]:sb-animate-in data-[state=closed]:sb-animate-out data-[state=closed]:sb-fade-out-0 data-[state=open]:sb-fade-in-0",
+      "sb:fixed sb:inset-0 sb:z-50 sb:bg-black/80 sb- data-[state=open]:sb-animate-in data-[state=closed]:sb-animate-out data-[state=closed]:sb-fade-out-0 data-[state=open]:sb-fade-in-0",
       className
     )}
     {...props}
@@ -36,15 +36,15 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "sb-fixed sb-left-[50%] sb-top-[50%] sb-z-50 sb-grid sb-w-full sb-max-w-lg sb-translate-x-[-50%] sb-translate-y-[-50%] sb-gap-4 sb-border sb-bg-background sb-p-6 sb-shadow-lg sb-duration-200 data-[state=open]:sb-animate-in data-[state=closed]:sb-animate-out data-[state=closed]:sb-fade-out-0 data-[state=open]:sb-fade-in-0 data-[state=closed]:sb-zoom-out-95 data-[state=open]:sb-zoom-in-95 data-[state=closed]:sb-slide-out-to-left-1/2 data-[state=closed]:sb-slide-out-to-top-[48%] data-[state=open]:sb-slide-in-from-left-1/2 data-[state=open]:sb-slide-in-from-top-[48%] sm:sb-rounded-lg",
+        "sb:fixed sb:left-[50%] sb:top-[50%] sb:z-50 sb:grid sb:w-full sb:max-w-lg sb:translate-x-[-50%] sb:translate-y-[-50%] sb:gap-4 sb:border sb:bg-background sb:p-6 sb:shadow-lg sb:duration-200 data-[state=open]:sb-animate-in data-[state=closed]:sb-animate-out data-[state=closed]:sb-fade-out-0 data-[state=open]:sb-fade-in-0 data-[state=closed]:sb-zoom-out-95 data-[state=open]:sb-zoom-in-95 data-[state=closed]:sb-slide-out-to-left-1/2 data-[state=closed]:sb-slide-out-to-top-[48%] data-[state=open]:sb-slide-in-from-left-1/2 data-[state=open]:sb-slide-in-from-top-[48%] sb:sm:rounded-lg",
         className
       )}
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="sb-absolute sb-right-4 sb-top-4 sb-rounded-sm sb-opacity-70 sb-ring-offset-background sb-transition-opacity hover:sb-opacity-100 focus:sb-outline-none focus:sb-ring-2 focus:sb-ring-ring focus:sb-ring-offset-2 disabled:sb-pointer-events-none data-[state=open]:sb-bg-accent data-[state=open]:sb-text-muted-foreground">
-        <X className="sb-h-4 sb-w-4" />
-        <span className="sb-sr-only">Close</span>
+      <DialogPrimitive.Close className="sb:absolute sb:right-4 sb:top-4 sb:rounded-sm sb:opacity-70 sb:ring-offset-background sb:transition-opacity sb:hover:opacity-100 sb:focus:outline-hidden sb:focus:ring-2 sb:focus:ring-ring sb:focus:ring-offset-2 sb:disabled:pointer-events-none sb:data-[state=open]:bg-accent sb:data-[state=open]:text-muted-foreground">
+        <X className="sb:h-4 sb:w-4" />
+        <span className="sb:sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>
@@ -57,7 +57,7 @@ const DialogHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "sb-flex sb-flex-col sb-space-y-1.5 sb-text-center sm:sb-text-left",
+      "sb:flex sb:flex-col sb:gap-1.5 sb:text-center sb:sm:text-left",
       className
     )}
     {...props}
@@ -71,7 +71,7 @@ const DialogFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "sb-flex sb-flex-col-reverse sm:sb-flex-row sm:sb-justify-end sm:sb-space-x-2",
+      "sb:flex sb:flex-col-reverse sb:sm:flex-row sb:sm:justify-end sb:sm:gap-2",
       className
     )}
     {...props}
@@ -86,7 +86,7 @@ const DialogTitle = React.forwardRef<
   <DialogPrimitive.Title
     ref={ref}
     className={cn(
-      "sb-text-lg sb-font-semibold sb-leading-none sb-tracking-tight",
+      "sb:text-lg sb:font-semibold sb:leading-none sb:tracking-tight",
       className
     )}
     {...props}
@@ -100,7 +100,7 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("sb-text-sm sb-text-muted-foreground", className)}
+    className={cn("sb:text-sm sb:text-muted-foreground", className)}
     {...props}
   />
 ))

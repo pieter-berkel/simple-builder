@@ -85,7 +85,7 @@ export const ContainerItemForm = (props: ContainerItemFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="sb-space-y-4 sb-p-4">
+        <div className="sb:flex sb:flex-col sb:gap-4 sb:p-4">
           {(component.inputs || []).map((input) => (
             <RenderFormField
               key={input.name}
@@ -119,9 +119,9 @@ const RenderFormField = (props: RenderFormFieldProps) => {
 
   if (input.multiple) {
     return (
-      <fieldset className="sb-space-y-2">
+      <fieldset className="sb:flex sb:flex-col sb:gap-2">
         <FormLabel>{input.friendlyName || input.name}</FormLabel>
-        <div className="sb-space-y-4">
+        <div className="sb:flex sb:flex-col sb:gap-4">
           {fieldArray.fields.map((field, i) =>
             type !== "grouped" ? (
               <FormField
@@ -129,16 +129,16 @@ const RenderFormField = (props: RenderFormFieldProps) => {
                 control={form.control}
                 name={`${input.name}.${i}` as string}
                 render={({ field }) => (
-                  <div className="sb-flex sb-items-center sb-gap-3">
+                  <div className="sb:flex sb:items-center sb:gap-3">
                     <RenderInput field={field} type={input.type} />
                     <button type="button" onClick={() => fieldArray.remove(i)}>
-                      <XIcon className="sb-h-4 sb-w-4" />
+                      <XIcon className="sb:h-4 sb:w-4" />
                     </button>
                   </div>
                 )}
               />
             ) : (
-              <div className="sb-flex sb-items-center sb-relative">
+              <div className="sb:flex sb:items-center sb:relative">
                 <RenderFormField
                   key={field.id}
                   form={form}
@@ -153,9 +153,9 @@ const RenderFormField = (props: RenderFormFieldProps) => {
                 <button
                   type="button"
                   onClick={() => fieldArray.remove(i)}
-                  className="sb-absolute sb-top-2 sb-right-2 sb-text-foreground/70 hover:sb-text-foreground"
+                  className="sb:absolute sb:top-2 sb:right-2 sb:text-foreground/70 sb:hover:text-foreground"
                 >
-                  <XIcon className="sb-h-4 sb-w-4" />
+                  <XIcon className="sb:h-4 sb:w-4" />
                 </button>
               </div>
             ),
@@ -165,12 +165,12 @@ const RenderFormField = (props: RenderFormFieldProps) => {
             variant="outline"
             size="sm"
             className={cn(
-              "sb-w-[89%] sb-border-2 sb-border-dashed sb-text-muted-foreground",
-              type === "grouped" && "sb-w-full",
+              "sb:w-[89%] sb:border-2 sb:border-dashed sb:text-muted-foreground",
+              type === "grouped" && "sb:w-full",
             )}
             onClick={() => fieldArray.append(undefined)}
           >
-            <PlusCircleIcon className="sb-h-4 sb-w-4" />
+            <PlusCircleIcon className="sb:h-4 sb:w-4" />
           </Button>
         </div>
       </fieldset>
@@ -206,22 +206,22 @@ const RenderFormField = (props: RenderFormFieldProps) => {
     case "richText":
       return (
         <Dialog>
-          <div className="sb-space-y-2">
+          <div className="sb:flex sb:flex-col sb:gap-2">
             <FormLabel>{input.friendlyName || input.name}</FormLabel>
             <DialogTrigger asChild>
-              <Button variant="outline" className="sb-w-full" type="button">
+              <Button variant="outline" className="sb:w-full" type="button">
                 {input.friendlyName || input.name} bewerken
               </Button>
             </DialogTrigger>
           </div>
-          <DialogContent className="sb-max-w-3xl sb-p-0">
-            <div className="sb-flex sb-h-full sb-max-h-svh sb-w-full sb-flex-col sm:sb-max-h-[90svh]">
-              <DialogHeader className="sb-flex-none sb-border-b sb-p-6">
+          <DialogContent className="sb:max-w-3xl sb:p-0">
+            <div className="sb:flex sb:h-full sb:max-h-svh sb:w-full sb:flex-col sb:sm:max-h-[90svh]">
+              <DialogHeader className="sb:flex-none sb:border-b sb:p-6">
                 <DialogTitle>
                   {input.friendlyName || input.name} editor
                 </DialogTitle>
               </DialogHeader>
-              <div className="sb-flex-1 sb-overflow-y-auto">
+              <div className="sb:flex-1 sb:overflow-y-auto">
                 <FormField
                   key={input.name}
                   control={form.control}
@@ -250,7 +250,7 @@ const RenderFormField = (props: RenderFormFieldProps) => {
           control={form.control}
           name={input.name}
           render={({ field }) => (
-            <FormItem className="sb-flex sb-flex-row sb-items-center sb-justify-between sb-space-y-0">
+            <FormItem className="sb:flex sb:flex-row sb:items-center sb:justify-between sb:space-y-0">
               <FormLabel>{input.friendlyName || input.name}</FormLabel>
               <FormControl>
                 <RenderInput type={type} field={field} />
@@ -265,11 +265,11 @@ const RenderFormField = (props: RenderFormFieldProps) => {
       );
     case "grouped":
       return (
-        <div className="sb-space-y-2 sb-w-full">
+        <div className="sb:flex sb:flex-col sb:gap-2 sb:w-full">
           {input.friendlyName !== "" && (
             <FormLabel>{input.friendlyName || input.name}</FormLabel>
           )}
-          <div className="sb-space-y-2 sb-p-3 sb-w-full sb-border sb-rounded-lg">
+          <div className="sb:flex sb:flex-col sb:gap-2 sb:p-3 sb:w-full sb:border sb:rounded-lg">
             {input.inputs.map((sub) => (
               <RenderFormField
                 key={`${input.name}.${sub.name}`}
@@ -334,11 +334,11 @@ const RenderInput = (props: RenderInputProps) => {
               variant={"outline"}
               size="sm"
               className={cn(
-                "sb-w-full sb-flex sb-justify-start sb-text-left sb-font-normal",
-                !field.value && "sb-text-muted-foreground",
+                "sb:w-full sb:flex sb:justify-start sb:text-left sb:font-normal",
+                !field.value && "sb:text-muted-foreground",
               )}
             >
-              <CalendarIcon className="sb-mr-2 sb-h-4 sb-w-4" />
+              <CalendarIcon className="sb:mr-2 sb:h-4 sb:w-4" />
               {/* Array.isArray is a bug fix */}
               {field.value && !Array.isArray(field.value) ? (
                 format(field.value, "PPP")
@@ -347,7 +347,7 @@ const RenderInput = (props: RenderInputProps) => {
               )}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="sb-w-auto sb-p-0" align="start">
+          <PopoverContent className="sb:w-auto sb:p-0" align="start">
             <Calendar
               mode="single"
               selected={field.value}
@@ -362,8 +362,8 @@ const RenderInput = (props: RenderInputProps) => {
     case "file":
       return (
         <MediaInput
-          className="sb-grid sb-grid-cols-2 sb-gap-1"
-          itemClassName="sb-aspect-video sb-h-auto sb-w-full"
+          className="sb:grid sb:grid-cols-2 sb:gap-1"
+          itemClassName="sb:aspect-video sb:h-auto sb:w-full"
           multiple={false}
           files={field.value ? [field.value] : []}
           onFilesChange={(files) => field.onChange(files[0])}

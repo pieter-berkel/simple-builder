@@ -59,55 +59,55 @@ export const BackgroundPicker = (props: BackgroundPickerProps) => {
           variant="outline"
           size="sm"
           className={cn(
-            "sb-justify-start sb-text-left sb-font-normal sb-normal-case sb-w-full",
-            !background && "sb-text-muted-foreground",
+            "sb:justify-start sb:text-left sb:font-normal sb:normal-case sb:w-full",
+            !background && "sb:text-muted-foreground",
             className,
           )}
         >
-          <div className="sb-w-full sb-flex sb-items-center sb-gap-2">
+          <div className="sb:w-full sb:flex sb:items-center sb:gap-2">
             {background ? (
               <div
-                className="sb-h-4 sb-w-4 sb-rounded !sb-bg-center !sb-bg-cover sb-transition-all sb-border"
+                className="sb:h-4 sb:w-4 sb:rounded sb:bg-center! sb:bg-cover! sb:transition-all sb:border"
                 style={{ background }}
               />
             ) : (
-              <PaintbrushIcon className="sb-h-4 sb-w-4" />
+              <PaintbrushIcon className="sb:h-4 sb:w-4" />
             )}
-            <div className="sb-truncate sb-flex-1">
+            <div className="sb:truncate sb:flex-1">
               {background ? background : "Kies een achtergrond"}
             </div>
           </div>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="sb-w-64 sb-p-0">
+      <PopoverContent className="sb:w-64 sb:p-0">
         <Tabs defaultValue={defaultTab}>
-          <TabsList className="sb-w-full">
-            <TabsTrigger className="sb-flex-1" value="solid">
+          <TabsList className="sb:w-full">
+            <TabsTrigger className="sb:flex-1" value="solid">
               Solid
             </TabsTrigger>
-            <TabsTrigger className="sb-flex-1" value="gradient">
+            <TabsTrigger className="sb:flex-1" value="gradient">
               Gradient
             </TabsTrigger>
-            <TabsTrigger className="sb-flex-1" value="image">
+            <TabsTrigger className="sb:flex-1" value="image">
               Image
             </TabsTrigger>
           </TabsList>
           <TabsContent
             value="solid"
-            className="data-[state=active]:sb-flex sb-flex-wrap sb-gap-1 sb-p-4"
+            className="sb:data-[state=active]:flex sb:flex-wrap sb:gap-1 sb:p-4"
           >
             {solids.map((s) => (
               <div
                 key={s}
                 style={{ background: s }}
-                className="sb-rounded-md sb-h-6 sb-w-6 sb-cursor-pointer active:sb-scale-105 sb-border"
+                className="sb:rounded-md sb:h-6 sb:w-6 sb:cursor-pointer sb:active:scale-105 sb:border"
                 onClick={() => onBackgroundChange(s)}
               />
             ))}
           </TabsContent>
           <TabsContent
             value="gradient"
-            className="data-[state=active]:sb-flex sb-flex-wrap sb-gap-1 sb-p-4"
+            className="sb:data-[state=active]:flex sb:flex-wrap sb:gap-1 sb:p-4"
           >
             {gradients.map((s) => (
               <div
@@ -119,10 +119,10 @@ export const BackgroundPicker = (props: BackgroundPickerProps) => {
             ))}
           </TabsContent>
           <TabsContent value="image">
-            <div className="sb-p-4 sb-border-b">
+            <div className="sb:p-4 sb:border-b">
               <MediaInput
-                className="sb-grid sb-grid-cols-2 sb-gap-1"
-                itemClassName="sb-aspect-video sb-h-auto sb-w-full"
+                className="sb:grid sb:grid-cols-2 sb:gap-1"
+                itemClassName="sb:aspect-video sb:h-auto sb:w-full"
                 multiple={false}
                 onFilesChange={(files) => {
                   if (!files.length) return;
@@ -136,12 +136,12 @@ export const BackgroundPicker = (props: BackgroundPickerProps) => {
                 }
               />
             </div>
-            <div className="sb-grid sb-grid-cols-2 sb-gap-1 sb-p-4">
+            <div className="sb:grid sb:grid-cols-2 sb:gap-1 sb:p-4">
               {images.map((s) => (
                 <div
                   key={s}
                   style={{ backgroundImage: s }}
-                  className="sb-rounded-md sb-bg-cover sb-bg-center sb-aspect-video sb-w-full sb-cursor-pointer sb-border active:sb-scale-105"
+                  className="sb:rounded-md sb:bg-cover sb:bg-center sb:aspect-video sb:w-full sb:cursor-pointer sb:border sb:active:scale-105"
                   onClick={() => onBackgroundChange(s)}
                 />
               ))}

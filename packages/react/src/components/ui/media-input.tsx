@@ -124,14 +124,14 @@ export const MediaInput = (props: MediaInputProps) => {
             src={src}
             alt=""
             fill
-            className="sb-absolute sb-inset-0 sb-object-cover sb-pointer-events-none"
+            className="sb:absolute sb:inset-0 sb:object-cover sb:pointer-events-none"
           />
-          <div className="sb-absolute sb-right-1 sb-top-1 sb-z-30 sb-flex sb-items-center sb-justify-end sb-gap-3 sb-opacity-0 sb-transition-opacity group-hover:sb-opacity-100">
+          <div className="sb:absolute sb:right-1 sb:top-1 sb:z-30 sb:flex sb:items-center sb:justify-end sb:gap-3 sb:opacity-0 sb:transition-opacity sb:group-hover:opacity-100">
             <button
-              className="sb-flex sb-h-8 sb-w-8 sb-items-center sb-justify-center sb-rounded-full sb-border sb-bg-secondary sb-text-secondary-foreground sb-opacity-90 sb-shadow sb-transition-opacity hover:sb-opacity-100"
+              className="sb:flex sb:h-8 sb:w-8 sb:items-center sb:justify-center sb:rounded-full sb:border sb:bg-secondary sb:text-secondary-foreground sb:opacity-90 sb:shadow sb:transition-opacity sb:hover:opacity-100"
               onClick={() => handleSourceDelete(src)}
             >
-              <Trash2Icon className="sb-h-4 sb-w-4" />
+              <Trash2Icon className="sb:h-4 sb:w-4" />
             </button>
           </div>
         </MediaInputItem>
@@ -140,11 +140,11 @@ export const MediaInput = (props: MediaInputProps) => {
         <MediaInputItem
           key={i}
           className={cn(
-            "sb-flex sb-h-28 sb-w-28 sb-items-center sb-justify-center",
+            "sb:flex sb:h-28 sb:w-28 sb:items-center sb:justify-center",
             props.itemClassName,
           )}
         >
-          <Loader2Icon className="sb-h-6 sb-w-6 sb-animate-spin" />
+          <Loader2Icon className="sb:h-6 sb:w-6 sb:animate-spin" />
         </MediaInputItem>
       ))}
 
@@ -152,18 +152,18 @@ export const MediaInput = (props: MediaInputProps) => {
         <label
           htmlFor={id}
           className={cn(
-            "sb-flex sb-h-28 sb-w-28 sb-cursor-pointer sb-items-center sb-justify-center sb-rounded-lg sb-border",
+            "sb:flex sb:h-28 sb:w-28 sb:cursor-pointer sb:items-center sb:justify-center sb:rounded-lg sb:border",
             props.itemClassName,
           )}
         >
-          <PlusIcon className="sb-h-6 sb-w-6" />
+          <PlusIcon className="sb:h-6 sb:w-6" />
           <input
             id={id}
             type="file"
             onChange={handleFilesAdd}
             multiple={multiple}
             accept=".png,.jpg,.jpeg,.webp,.gif,.svg"
-            className="sb-hidden"
+            className="sb:hidden"
           />
         </label>
       ) : null}
@@ -180,7 +180,7 @@ const MediaInputItem = (props: MediaInputItemProps) => {
   return (
     <div
       className={cn(
-        "sb-relative sb-h-28 sb-w-28 sb-overflow-hidden sb-rounded-lg sb-border",
+        "sb:relative sb:h-28 sb:w-28 sb:overflow-hidden sb:rounded-lg sb:border",
         props.className,
       )}
     >

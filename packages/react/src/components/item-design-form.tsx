@@ -173,23 +173,23 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="sb-space-y-4 sb-p-4">
+        <div className="sb:flex sb:flex-col sb:gap-4 sb:p-4">
           <Tabs
             defaultValue={device}
             onValueChange={(device) => setDevice(device as Device)}
           >
-            <TabsList className="sb-h-9 sb-grid sb-w-full sb-grid-cols-2">
-              <TabsTrigger value="desktop" className="sb-text-xs">
-                <MonitorIcon className="sb-h-4 sb-w-4 sb-mr-2" />
+            <TabsList className="sb:h-9 sb:grid sb:w-full sb:grid-cols-2">
+              <TabsTrigger value="desktop" className="sb:text-xs">
+                <MonitorIcon className="sb:h-4 sb:w-4 sb:mr-2" />
                 <span>Desktop</span>
               </TabsTrigger>
-              <TabsTrigger value="mobile" className="sb-text-xs">
-                <SmartphoneIcon className="sb-h-4 sb-w-4 sb-mr-2" />
+              <TabsTrigger value="mobile" className="sb:text-xs">
+                <SmartphoneIcon className="sb:h-4 sb:w-4 sb:mr-2" />
                 <span>Mobiel</span>
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <div className="sb-space-y-4">
+          <div className="sb:flex sb:flex-col sb:gap-4">
             <FormField
               control={form.control}
               key={`${device}.background`}
@@ -253,7 +253,7 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
               control={form.control}
               name="container"
               render={({ field }) => (
-                <FormItem className="sb-flex sb-flex-row sb-items-center sb-justify-between sb-space-y-0">
+                <FormItem className="sb:flex sb:flex-row sb:items-center sb:justify-between sb:space-y-0">
                   <FormLabel>Volledige breedte</FormLabel>
                   <FormControl>
                     <Switch

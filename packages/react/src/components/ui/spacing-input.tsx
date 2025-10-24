@@ -26,8 +26,8 @@ export const SpacingInput = (props: SpacingInputProps) => {
   }, [value, props.onChange]);
 
   return (
-    <div className="sb-grid sb-grid-cols-[1fr,auto] sb-gap-3">
-      <div className="sb-grid sb-grid-cols-2 sb-items-center sb-gap-3">
+    <div className="sb:grid sb:grid-cols-[1fr_auto] sb:gap-3">
+      <div className="sb:grid sb:grid-cols-2 sb:items-center sb:gap-3">
         {!indipendent ? (
           <>
             <AdvancedInput
@@ -37,9 +37,9 @@ export const SpacingInput = (props: SpacingInputProps) => {
                 setValue((prev) => ({ ...prev, left: +value, right: +value }))
               }
               prepend={
-                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4" />
+                <AlignHorizontalSpaceAroundIcon className="sb:h-4 sb:w-4" />
               }
-              append={<span className="sb-text-muted-foreground">px</span>}
+              append={<span className="sb:text-muted-foreground">px</span>}
             />
             <AdvancedInput
               value={value.top}
@@ -48,9 +48,9 @@ export const SpacingInput = (props: SpacingInputProps) => {
                 setValue((prev) => ({ ...prev, top: +value, bottom: +value }))
               }
               prepend={
-                <AlignHorizontalSpaceAroundIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
+                <AlignHorizontalSpaceAroundIcon className="sb:h-4 sb:w-4 sb:rotate-90" />
               }
-              append={<span className="sb-text-muted-foreground">px</span>}
+              append={<span className="sb:text-muted-foreground">px</span>}
             />
           </>
         ) : (
@@ -62,9 +62,9 @@ export const SpacingInput = (props: SpacingInputProps) => {
                 setValue((prev) => ({ ...prev, left: +value }))
               }
               prepend={
-                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4" />
+                <AlignHorizontalJustifyStartIcon className="sb:h-4 sb:w-4" />
               }
-              append={<span className="sb-text-muted-foreground">px</span>}
+              append={<span className="sb:text-muted-foreground">px</span>}
             />
 
             <AdvancedInput
@@ -74,9 +74,9 @@ export const SpacingInput = (props: SpacingInputProps) => {
                 setValue((prev) => ({ ...prev, top: +value }))
               }
               prepend={
-                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-90" />
+                <AlignHorizontalJustifyStartIcon className="sb:h-4 sb:w-4 sb:rotate-90" />
               }
-              append={<span className="sb-text-muted-foreground">px</span>}
+              append={<span className="sb:text-muted-foreground">px</span>}
             />
             <AdvancedInput
               value={value.right}
@@ -85,9 +85,9 @@ export const SpacingInput = (props: SpacingInputProps) => {
                 setValue((prev) => ({ ...prev, right: +value }))
               }
               prepend={
-                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb-rotate-180" />
+                <AlignHorizontalJustifyStartIcon className="sb:h-4 sb:w-4 sb:rotate-180" />
               }
-              append={<span className="sb-text-muted-foreground">px</span>}
+              append={<span className="sb:text-muted-foreground">px</span>}
             />
             <AdvancedInput
               value={value.bottom}
@@ -96,22 +96,22 @@ export const SpacingInput = (props: SpacingInputProps) => {
                 setValue((prev) => ({ ...prev, bottom: +value }))
               }
               prepend={
-                <AlignHorizontalJustifyStartIcon className="sb-h-4 sb-w-4 sb--rotate-90" />
+                <AlignHorizontalJustifyStartIcon className="sb:h-4 sb:w-4 sb:-rotate-90" />
               }
-              append={<span className="sb-text-muted-foreground">px</span>}
+              append={<span className="sb:text-muted-foreground">px</span>}
             />
           </>
         )}
       </div>
-      <div className="sb-shrink-0">
+      <div className="sb:shrink-0">
         <Toggle
-          className="sb-shrink-0 sb-flex sb-w-8 sb-h-8 sb-p-0"
+          className="sb:shrink-0 sb:flex sb:w-8 sb:h-8 sb:p-0"
           variant="outline"
           size="sm"
           pressed={indipendent}
           onPressedChange={setIndipendent}
         >
-          <ScanIcon className="sb-h-4 sb-w-4" />
+          <ScanIcon className="sb:h-4 sb:w-4" />
         </Toggle>
       </div>
     </div>

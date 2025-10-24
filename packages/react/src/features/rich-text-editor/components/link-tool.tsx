@@ -60,10 +60,10 @@ export const LinkTool = ({ editor }: { editor: Editor }) => {
           pressed={editor.isActive("link")}
           disabled={editor.isActive("codeBlock")}
         >
-          <LuLink2 className="sb-size-5" />
+          <LuLink2 className="sb:size-5" />
         </ToolbarButton>
       </DialogTrigger>
-      <DialogContent className="sb-w-full sb-min-w-80">
+      <DialogContent className="sb:w-full sb:min-w-80">
         <LinkForm onSave={handleSetLink} defaultText={text} />
       </DialogContent>
     </Dialog>
@@ -106,7 +106,7 @@ const LinkForm = ({
 
   return (
     <Form {...form}>
-      <div className="sb-space-y-6">
+      <div className="sb:flex sb:flex-col sb:gap-6">
         <FormField
           control={form.control}
           name="url"
@@ -138,7 +138,7 @@ const LinkForm = ({
           name="isNewTab"
           render={({ field }) => (
             <FormItem>
-              <div className="sb-flex sb-items-center sb-space-x-2">
+              <div className="sb:flex sb:items-center sb:gap-2">
                 <FormControl>
                   <Switch
                     checked={field.value}

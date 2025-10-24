@@ -68,7 +68,7 @@ export const ColorTool = ({ editor }: { editor: Editor }) => {
   return (
     <Popover modal={true}>
       <PopoverTrigger asChild>
-        <ToolbarButton className="sb-w-12">
+        <ToolbarButton className="sb:w-12">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -79,36 +79,36 @@ export const ColorTool = ({ editor }: { editor: Editor }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="sb-size-5"
+            className="sb:size-5"
             style={{ color: selectedColor }}
           >
             <path d="M4 20h16" />
             <path d="m6 16 6-12 6 12" />
             <path d="M8 12h8" />
           </svg>
-          <LuChevronDown className="sb-size-5" />
+          <LuChevronDown className="sb:size-5" />
         </ToolbarButton>
       </PopoverTrigger>
-      <PopoverContent align="start" className="sb-w-full">
+      <PopoverContent align="start" className="sb:w-full">
         <ToggleGroup
           type="single"
           value={selectedColor}
           onValueChange={handleColorChange}
-          className="sb-flex-col sb-gap-1.5"
+          className="sb:flex-col sb:gap-1.5"
         >
           {PALETTES.map((pallete, i) => (
-            <div key={i} className="sb-flex sb-gap-1.5">
+            <div key={i} className="sb:flex sb:gap-1.5">
               {pallete.colors.map((color, j) => (
                 <ToggleGroupItem
                   tabIndex={0}
                   key={j}
-                  className="sb-relative sb-size-7 sb-rounded-md sb-border sb-p-0"
+                  className="sb:relative sb:size-7 sb:rounded-md sb:border sb:p-0"
                   value={color.cssVar}
                   style={{ backgroundColor: color.cssVar }}
                 >
                   {selectedColor === color.cssVar && (
                     <LuCheck
-                      className="sb-absolute sb-inset-0 sb-m-auto sb-size-6"
+                      className="sb:absolute sb:inset-0 sb:m-auto sb:size-6"
                       style={{ color: pallete.inverse }}
                     />
                   )}

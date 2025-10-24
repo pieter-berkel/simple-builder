@@ -21,16 +21,16 @@ import { ListTool } from "./list-tool";
 
 export const Toolbar = ({ editor }: { editor: Editor }) => {
   return (
-    <div className="sb-shrink-0 sb-overflow-x-auto sb-border-b sb-border-border sb-p-2">
-      <div className="sb-flex sb-w-max sb-items-center sb-gap-px">
+    <div className="sb:shrink-0 sb:overflow-x-auto sb:border-b sb:border-border sb:p-2">
+      <div className="sb:flex sb:w-max sb:items-center sb:gap-px">
         <ElementTool editor={editor} />
-        <Separator orientation="vertical" className="sb-mx-2 sb-h-7" />
+        <Separator orientation="vertical" className="sb:mx-2 sb:h-7" />
         <FormatTool editor={editor} />
-        <Separator orientation="vertical" className="sb-mx-2 sb-h-7" />
+        <Separator orientation="vertical" className="sb:mx-2 sb:h-7" />
         <ColorTool editor={editor} />
-        <Separator orientation="vertical" className="sb-mx-2 sb-h-7" />
+        <Separator orientation="vertical" className="sb:mx-2 sb:h-7" />
         <ListTool editor={editor} />
-        <Separator orientation="vertical" className="sb-mx-2 sb-h-7" />
+        <Separator orientation="vertical" className="sb:mx-2 sb:h-7" />
         <LinkTool editor={editor} />
         <InsertTool editor={editor} />
       </div>
@@ -69,27 +69,27 @@ export const ToolbarSection = ({
           disabled={!action.canExecute(editor)}
           pressed={action.isActive(editor)}
         >
-          <action.icon className="sb-size-5" />
+          <action.icon className="sb:size-5" />
         </ToolbarButton>
       ))}
       {dropdownActions.length > 0 && (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <ToolbarButton pressed={isDropdownActive}>
-              <LuEllipsis className="sb-size-5" />
+              <LuEllipsis className="sb:size-5" />
             </ToolbarButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
             {dropdownActions.map((action) => (
               <DropdownMenuItem
                 key={action.label}
-                className={cn("sb-flex sb-flex-row sb-items-center sb-gap-2", {
-                  "sb-bg-accent": action.isActive(editor),
+                className={cn("sb:flex sb:flex-row sb:items-center sb:gap-2", {
+                  "sb:bg-accent": action.isActive(editor),
                 })}
                 onClick={() => action.action(editor)}
                 disabled={!action.canExecute(editor)}
               >
-                <action.icon className="sb-size-4" />
+                <action.icon className="sb:size-4" />
                 <span>{action.label}</span>
               </DropdownMenuItem>
             ))}
@@ -108,8 +108,8 @@ export const ToolbarButton = React.forwardRef<
     <Toggle
       size="sm"
       className={cn(
-        "sb-size-8 sb-p-0 data-[state=on]:sb-bg-accent",
-        { "sb-bg-accent": props.pressed },
+        "sb:size-8 sb:p-0 sb:data-[state=on]:bg-accent",
+        { "sb:bg-accent": props.pressed },
         className,
       )}
       ref={ref}
