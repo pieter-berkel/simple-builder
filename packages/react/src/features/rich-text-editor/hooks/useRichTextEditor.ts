@@ -27,6 +27,7 @@ export const useRichTextEditor = ({
 }: UseRichTextEditorOptions) => {
   const handleCreate = useCallback(
     (editor: Editor) => {
+      console.count("useRichTextEditor:handleCreate");
       if (value && editor.isEmpty) {
         editor.commands.setContent(value);
       }
@@ -36,13 +37,15 @@ export const useRichTextEditor = ({
 
   const handleUpdate = useCallback(
     (editor: Editor) => {
+      console.count("useRichTextEditor:handleUpdate");
       onUpdate?.(getOutput(editor, output));
     },
-    [output],
+    [output, onUpdate],
   );
 
   const handleBlur = useCallback(
     (editor: Editor) => {
+      console.count("useRichTextEditor:handleBlur");
       onBlur?.(getOutput(editor, output));
     },
     [output, onBlur],
@@ -63,6 +66,8 @@ export const useRichTextEditor = ({
     onBlur: ({ editor }) => handleBlur(editor),
     ...options,
   });
+
+  console.count("useRichTextEditor");
 
   return editor;
 };

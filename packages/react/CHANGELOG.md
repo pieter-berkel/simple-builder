@@ -1,5 +1,53 @@
 # @simple-builder/react
 
+## 1.2.10
+
+### Patch Changes
+
+- publish fix
+- Updated dependencies
+  - @simple-builder/server@1.2.10
+
+## 1.2.9
+
+### Patch Changes
+
+- Add submit button for improved performance
+- Updated dependencies
+  - @simple-builder/server@1.2.9
+
+## 1.2.8
+
+### Patch Changes
+
+- possible freeze fix
+- Updated dependencies
+  - @simple-builder/server@1.2.8
+
+## 1.2.7
+
+### Patch Changes
+
+- fix
+- Updated dependencies
+  - @simple-builder/server@1.2.7
+
+## 1.2.6
+
+### Patch Changes
+
+- fix
+- Updated dependencies
+  - @simple-builder/server@1.0.24
+
+## 1.2.5
+
+### Patch Changes
+
+- fix endless loop
+- Updated dependencies
+  - @simple-builder/server@1.0.23
+
 ## 1.2.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "next-example",
-  "version": "0.2.4",
+  "version": "0.2.10",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -16,7 +16,7 @@
     "@simple-builder/react": "workspace:*",
     "@simple-builder/server": "workspace:*",
     "@uploadthing/react": "^6.1.0",
-    "better-sqlite3": "^9.3.0",
+    "better-sqlite3": "^11.10.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "drizzle-orm": "^0.29.3",

@@ -1,5 +1,53 @@
 # next-example
 
+## 0.2.10
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/server@1.2.10
+  - @simple-builder/react@1.2.10
+
+## 0.2.9
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/server@1.2.9
+  - @simple-builder/react@1.2.9
+
+## 0.2.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/server@1.2.8
+  - @simple-builder/react@1.2.8
+
+## 0.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/server@1.2.7
+  - @simple-builder/react@1.2.7
+
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/server@1.0.24
+  - @simple-builder/react@1.2.6
+
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/react@1.2.5
+  - @simple-builder/server@1.0.23
+
 ## 0.2.4
 
 ### Patch Changes

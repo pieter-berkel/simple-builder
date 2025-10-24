@@ -1,5 +1,41 @@
 # @simple-builder/server
 
+## 1.2.10
+
+### Patch Changes
+
+- publish fix
+
+## 1.2.9
+
+### Patch Changes
+
+- Add submit button for improved performance
+
+## 1.2.8
+
+### Patch Changes
+
+- possible freeze fix
+
+## 1.2.7
+
+### Patch Changes
+
+- fix
+
+## 1.0.24
+
+### Patch Changes
+
+- fix
+
+## 1.0.23
+
+### Patch Changes
+
+- fix endless loop
+
 ## 1.0.22
 
 ### Patch Changes

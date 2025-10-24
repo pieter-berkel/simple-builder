@@ -1,10 +1,4 @@
 import * as React from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ContentItem } from "@simple-builder/server";
-import { MonitorIcon, SmartphoneIcon } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
 import {
   Form,
   FormControl,
@@ -13,10 +7,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ContentItem } from "@simple-builder/server";
+import { MonitorIcon, SmartphoneIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import { builder } from "..";
 import { useBuilder } from "./context/builder-context";
 import { BackgroundPicker } from "./ui/background-picker";
+import { Button } from "./ui/button";
 import { ColorPicker } from "./ui/color-picker";
 import {
   Select,
@@ -112,65 +112,63 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
 
   const { patchItem } = useBuilder();
 
-  const onSubmit = (values: z.infer<typeof designSchema>) => {
-    const { container, hidden, desktop, mobile } = values;
-    const dirtyFields = form.formState.dirtyFields;
+  const onSubmit = React.useCallback(
+    (values: z.infer<typeof designSchema>) => {
+      const { container, hidden, desktop, mobile } = values;
+      const dirtyFields = form.formState.dirtyFields;
 
-    type Entries<T> = {
-      [K in keyof T]: [K, T[K]];
-    }[keyof T][];
+      type Entries<T> = {
+        [K in keyof T]: [K, T[K]];
+      }[keyof T][];
 
-    const desktopPatch = (
-      Object.entries(desktop) as Entries<typeof desktop>
-    ).reduce(
-      (acc, [key, value]) => ({
-        ...acc,
-        ...(value && { [key]: value }),
-      }),
-      { ...item.styles?.desktop },
-    );
-
-    const mobilePatch = (
-      Object.entries(mobile) as Entries<typeof mobile>
-    ).reduce(
-      (acc, [key, value]) => {
-        const desktopValue = desktop[key];
-        const isDirty = dirtyFields.desktop?.[key];
-
-        if (value === desktopValue || isDirty) {
-          return acc;
-        }
-
-        if (["padding", "margin"].includes(key)) {
-          if (value === "0px" && desktopValue === "0px") {
-            return acc;
-          }
-        }
-
-        return {
+      const desktopPatch = (
+        Object.entries(desktop) as Entries<typeof desktop>
+      ).reduce(
+        (acc, [key, value]) => ({
           ...acc,
           ...(value && { [key]: value }),
-        };
-      },
-      { ...item.styles?.mobile },
-    );
+        }),
+        { ...item.styles?.desktop },
+      );
 
-    patchItem(item.id, {
-      styles: {
-        ...(container === false && { container }),
-        ...(hidden !== "never" && { hidden }),
-        ...(Object.keys(desktopPatch).length && { desktop: desktopPatch }),
-        ...(Object.keys(mobilePatch).length && { mobile: mobilePatch }),
-      },
-    });
-  };
+      const mobilePatch = (
+        Object.entries(mobile) as Entries<typeof mobile>
+      ).reduce(
+        (acc, [key, value]) => {
+          const desktopValue = desktop[key];
+          const isDirty = dirtyFields.desktop?.[key];
+
+          if (value === desktopValue || isDirty) {
+            return acc;
+          }
+
+          if (["padding", "margin"].includes(key)) {
+            if (value === "0px" && desktopValue === "0px") {
+              return acc;
+            }
+          }
+
+          return {
+            ...acc,
+            ...(value && { [key]: value }),
+          };
+        },
+        { ...item.styles?.mobile },
+      );
+
+      patchItem(item.id, {
+        styles: {
+          ...(container === false && { container }),
+          ...(hidden !== "never" && { hidden }),
+          ...(Object.keys(desktopPatch).length && { desktop: desktopPatch }),
+          ...(Object.keys(mobilePatch).length && { mobile: mobilePatch }),
+        },
+      });
+    },
+    [patchItem, item.id, form.formState.dirtyFields],
+  );
 
   const [device, setDevice] = React.useState<Device>("desktop");
-
-  React.useEffect(() => {
-    const subscription = form.watch(() => form.handleSubmit(onSubmit)());
-    return () => subscription.unsubscribe();
-  }, [form.watch, form.handleSubmit]);
 
   return (
     <Form {...form}>
@@ -303,6 +301,9 @@ export const ItemDesignForm = (props: ItemDesignFormProps) => {
               )}
             />
           </div>
+          <Button type="submit" className="w-full">
+            Opslaan
+          </Button>
         </div>
       </form>
     </Form>

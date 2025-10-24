@@ -23,6 +23,8 @@ export const RichTextEditor = ({
   editorContentClassName,
   ...props
 }: RichTextEditorProps) => {
+  console.count("re-render RichTextEditor");
+
   const editor = useRichTextEditor({
     value,
     onUpdate: onChange,

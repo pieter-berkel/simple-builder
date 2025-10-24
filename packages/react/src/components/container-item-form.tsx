@@ -73,16 +73,14 @@ export const ContainerItemForm = (props: ContainerItemFormProps) => {
     ),
   });
 
-  const onSubmit = (values: Record<string, any>) => {
-    patchItem(item.id, {
-      props: values,
-    });
-  };
-
-  React.useEffect(() => {
-    const subscription = form.watch(() => form.handleSubmit(onSubmit)());
-    return () => subscription.unsubscribe();
-  }, [form.watch, form.handleSubmit]);
+  const onSubmit = React.useCallback(
+    (values: Record<string, any>) => {
+      patchItem(item.id, {
+        props: values,
+      });
+    },
+    [patchItem, item.id],
+  );
 
   return (
     <Form {...form}>
@@ -96,6 +94,9 @@ export const ContainerItemForm = (props: ContainerItemFormProps) => {
               form={form}
             />
           ))}
+          <Button type="submit" className="w-full">
+            Opslaan
+          </Button>
         </div>
       </form>
     </Form>
@@ -208,7 +209,7 @@ const RenderFormField = (props: RenderFormFieldProps) => {
           <div className="sb-space-y-2">
             <FormLabel>{input.friendlyName || input.name}</FormLabel>
             <DialogTrigger asChild>
-              <Button variant="outline" className="sb-w-full">
+              <Button variant="outline" className="sb-w-full" type="button">
                 {input.friendlyName || input.name} bewerken
               </Button>
             </DialogTrigger>
