@@ -1,51 +1,73 @@
 import { createElement } from "react";
-import { ContentItem } from "@simple-builder/server";
+import type { ContentItem } from "@simple-builder/server";
 
 import type { Component } from "@/types";
 
-export const builder = (() => {
-  const components: Component[] = [];
+class Builder {
+	private static instance: Builder;
+	private components: Component[] = [];
 
-  return {
-    register: (component: any, config: Omit<Component, "component">) => {
-      if (components.find(({ name }) => name === config.name)) {
-        console.log(
-          `[simple-builder]: Component ${config.name} already registered.`,
-        );
-        return;
-      }
+	private constructor() {
+		// Private constructor to prevent direct instantiation
+	}
 
-      components.push({
-        component,
-        ...config,
-      });
-    },
+	public static getInstance(): Builder {
+		if (!Builder.instance) {
+			Builder.instance = new Builder();
+		}
+		return Builder.instance;
+	}
 
-    getComponents: () => components,
+	public register(
+		component: Component["component"],
+		config: Omit<Component, "component">,
+	): void {
+		if (this.components.find(({ name }) => name === config.name)) {
+			console.log(
+				`[simple-builder]: Component ${config.name} already registered.`,
+			);
+			return;
+		}
 
-    getComponent: (name: string) => {
-      return components.find((c) => c.name === name);
-    },
+		this.components.push({
+			component,
+			...config,
+		});
+	}
 
-    bindComponent: ({ content, ...block }: ContentItem, edit?: boolean) => {
-      const component = components.find(({ name }) => name === block.component);
+	public getComponents(): Component[] {
+		return this.components;
+	}
 
-      if (!component) {
-        throw new Error(
-          `[simple-builder]: Component ${block.component} not found`,
-        );
-      }
+	public getComponent(name: string): Component | undefined {
+		return this.components.find((c) => c.name === name);
+	}
 
-      const Element = createElement(component.component, {
-        key: block.id,
-        builder: { id: block.id, content, edit },
-        ...block.props,
-      });
+	public bindComponent(
+		{ content, ...block }: ContentItem,
+		edit?: boolean,
+	): ReturnType<typeof createElement> {
+		const component = this.components.find(
+			({ name }) => name === block.component,
+		);
 
-      return Element;
-    },
-  };
-})();
+		if (!component) {
+			throw new Error(
+				`[simple-builder]: Component ${block.component} not found`,
+			);
+		}
+
+		const Element = createElement(component.component, {
+			key: block.id,
+			builder: { id: block.id, content, edit: !!edit },
+			...block.props,
+		});
+
+		return Element;
+	}
+}
+
+export const builder = Builder.getInstance();
 
 // class Builder {
 

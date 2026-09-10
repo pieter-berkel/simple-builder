@@ -1,5 +1,18 @@
 # @simple-builder/server
 
+## 1.5.0
+
+### Minor Changes
+
+- fix
+
+## 1.4.2
+
+### Patch Changes
+
+- restore builder singleton and edit mode passthrough
+- remove dirty dist folders
+
 ## 1.4.1
 
 ### Patch Changes
@@ -11,6 +24,60 @@
 ### Minor Changes
 
 - Allow video files to in the file picker
+
+## 1.3.9
+
+### Patch Changes
+
+- fix
+
+## 1.3.8
+
+### Patch Changes
+
+- fix
+
+## 1.3.7
+
+### Patch Changes
+
+- fix edit mode passtrough
+
+## 1.3.6
+
+### Patch Changes
+
+- bump version
+
+## 1.3.5
+
+### Patch Changes
+
+- updated the builder class to use a singleton pattern
+
+## 1.3.4
+
+### Patch Changes
+
+- include new build files
+
+## 1.3.3
+
+### Patch Changes
+
+- fix key on children issue
+
+## 1.3.2
+
+### Patch Changes
+
+- fix text issues for adding component
+
+## 1.3.1
+
+### Patch Changes
+
+- version bump
 
 ## 1.3.0
 

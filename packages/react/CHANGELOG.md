@@ -1,5 +1,25 @@
 # @simple-builder/react
 
+## 1.5.0
+
+### Minor Changes
+
+- fix
+
+### Patch Changes
+
+- Updated dependencies
+  - @simple-builder/server@1.5.0
+
+## 1.4.2
+
+### Patch Changes
+
+- restore builder singleton and edit mode passthrough
+- remove dirty dist folders
+- Updated dependencies
+  - @simple-builder/server@1.4.2
+
 ## 1.4.1
 
 ### Patch Changes
@@ -18,6 +38,78 @@
 
 - Updated dependencies
   - @simple-builder/server@1.4.0
+
+## 1.3.9
+
+### Patch Changes
+
+- fix
+- Updated dependencies
+  - @simple-builder/server@1.3.9
+
+## 1.3.8
+
+### Patch Changes
+
+- fix
+- Updated dependencies
+  - @simple-builder/server@1.3.8
+
+## 1.3.7
+
+### Patch Changes
+
+- fix edit mode passtrough
+- Updated dependencies
+  - @simple-builder/server@1.3.7
+
+## 1.3.6
+
+### Patch Changes
+
+- bump version
+- Updated dependencies
+  - @simple-builder/server@1.3.6
+
+## 1.3.5
+
+### Patch Changes
+
+- updated the builder class to use a singleton pattern
+- Updated dependencies
+  - @simple-builder/server@1.3.5
+
+## 1.3.4
+
+### Patch Changes
+
+- include new build files
+- Updated dependencies
+  - @simple-builder/server@1.3.4
+
+## 1.3.3
+
+### Patch Changes
+
+- fix key on children issue
+- Updated dependencies
+  - @simple-builder/server@1.3.3
+
+## 1.3.2
+
+### Patch Changes
+
+- fix text issues for adding component
+- Updated dependencies
+  - @simple-builder/server@1.3.2
+
+## 1.3.1
+
+### Patch Changes
+
+- version bump
+- Updated dependencies
+  - @simple-builder/server@1.3.1
 
 ## 1.3.0
 
