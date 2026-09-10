@@ -10,7 +10,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { cn } from "@/lib/utils";
-import { MediaInput } from "./media-input";
+import { IMAGE_FILE_ACCEPT, MediaInput } from "./media-input";
 
 type BackgroundPickerProps = {
   background: string;
@@ -124,6 +124,7 @@ export const BackgroundPicker = (props: BackgroundPickerProps) => {
                 className="sb:grid sb:grid-cols-2 sb:gap-1"
                 itemClassName="sb:aspect-video sb:h-auto sb:w-full"
                 multiple={false}
+                accept={IMAGE_FILE_ACCEPT}
                 onFilesChange={(files) => {
                   if (!files.length) return;
                   onBackgroundChange(`url(${files[0]})`);

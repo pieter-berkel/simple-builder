@@ -22,7 +22,14 @@ export const Demo = (props: DemoProps) => {
       <br />
       Rich omschrijving: {props.rich}
       <br />
-      {props.file && <img src={props.file} />}
+      {props.file &&
+        (/\.(mp4|webm|mov|ogg|ogv|m4v)(\?|#|$)/i.test(props.file) ? (
+          <video src={props.file} controls>
+            <track kind="captions" />
+          </video>
+        ) : (
+          <img src={props.file} alt="" />
+        ))}
     </div>
   );
 };

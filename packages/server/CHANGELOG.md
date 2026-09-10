@@ -1,5 +1,17 @@
 # @simple-builder/server
 
+## 1.4.1
+
+### Patch Changes
+
+- fix colors
+
+## 1.4.0
+
+### Minor Changes
+
+- Allow video files to in the file picker
+
 ## 1.3.0
 
 ### Minor Changes
